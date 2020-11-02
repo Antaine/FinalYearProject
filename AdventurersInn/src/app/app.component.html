@@ -1,0 +1,60 @@
+<div class="container">
+
+  <h1 style="margin-top: 25px;">
+    {{title}}
+  </h1>
+
+  <div class="row" style="margin-top: 25px;">
+    <div class="col-md-3">
+      <input type="text" class="form-control" [(ngModel)]="userName" placeholder="Name">
+    </div>
+    <div class="col-md-3">
+      <input type="text" class="form-control" [(ngModel)]="userLevel" placeholder="Level">
+    </div>
+    <div class="col-md-3">
+      <input type="text" class="form-control" [(ngModel)]="userCharacter" placeholder="Character">
+    </div>
+    <div class="col-md-3">
+      <button type="button" (click)="CreateRecord()" [disabled]="!userName || !userLevel || !userCharacter" class="btn btn-primary">+
+        Create User</button>
+    </div>
+  </div>
+  
+  <div class="row" style="margin-top: 25px;">
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem;" *ngFor="let item of users">
+        <div class="card-body" *ngIf="!item.isEdit; else elseBlock">
+          <h5 class="card-title">{{item.Name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Level: {{item.Level}} Level</h6>
+          <p class="card-text">Character: {{item.Character}}</p>
+          <a href="#" class="card-link" (click)="EditRecord(item)">Edit</a>
+          <a href="#" class="card-link" (click)="RemoveRecord(item.id)">Delete</a>
+        </div>
+
+        <ng-template #elseBlock>
+          <div class="card-body">
+            <h5 class="card-title">Edit</h5>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="text" class="form-control" [(ngModel)]="item.EditName" placeholder="Edit Name">
+                </div>
+                <div class="col-md-12">
+                  <input type="text" class="form-control" [(ngModel)]="item.EditLevel" placeholder="Edit Level">
+                </div>
+                <div class="col-md-12">
+                  <input type="text" class="form-control" [(ngModel)]="item.EditCharacter" placeholder="Edit Character">
+                </div>
+              </div>
+            </div>
+
+            <a href="#" class="card-link" (click)="item.isEdit = false">Cancel</a>
+            <a href="#" class="card-link" (click)="UpdateRecord(item)">Update</a>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+
+</div>

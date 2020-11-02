@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  firebase: {
+  firebase:{
     apiKey: "AIzaSyCQhZRo-LBmzsD6zJ3z1JTHTqEGkGfKz0Y",
     authDomain: "jotunenhoard.firebaseapp.com",
     databaseURL: "https://jotunenhoard.firebaseio.com",
