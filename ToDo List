@@ -1,9 +1,16 @@
-TO DO
-Compare SQL and NoSQL
+TO DO -
+Security
+Log In
+CSS
+Design of App & Database
+
+
+DONE -
+Decide on a database platform.
+Set up Accounts.
 Set up Firebase wwith sample data.
 Decide between AWS & Azure for front end.
 Set up virtual machine for front end.
-
-DONE
-Decide on a database platform.
-Set up Accounts.
+Compare SQL and NoSQL
+Create a basic CRUD App.
+Put app on VM.
