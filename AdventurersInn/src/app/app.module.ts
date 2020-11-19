@@ -12,6 +12,8 @@ import { CreateNewUserComponent } from './create-new-user/create-new-user.compon
 import { ReadUsersComponent } from './read-users/read-users.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { CrudService } from './services/crudservice';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
     CreateNewUserComponent,
     ReadUsersComponent,
     UpdateUserComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
     AngularFirestoreModule,
     AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [CrudService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

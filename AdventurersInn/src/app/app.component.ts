@@ -10,14 +10,22 @@ import { CrudService } from './services/crudservice';
 export class AppComponent  implements OnInit {
   title = 'Firestore CRUD Operations Users App';
 
+  isSignedIn = false
+
   users: any;
   userName: string;
   userLevel: number;
   userCharacter: string;
 
-  constructor(private crudService: CrudService) { }
+  constructor(
+    public crudService: CrudService) { }
 
   ngOnInit() {
+    if(localStorage.getItem('user') !== null)
+    this.isSignedIn = true
+    else
+    this.isSignedIn = false 
+
     this.crudService.read_Users().subscribe(data => {
 
       this.users = data.map(e => {
@@ -32,6 +40,23 @@ export class AppComponent  implements OnInit {
       console.log(this.users);
 
     });
+  }
+
+  async onSignUp(email:string,password:string){
+    await this.crudService.signUp(email,password)
+    if(this.crudService.isLoggedIn)
+    this.isSignedIn = true
+  }
+
+  async onSignIn(email:string,password:string){
+    await this.crudService.signIn(email,password)
+    if(this.crudService.isLoggedIn)
+    this.isSignedIn = true
+  }
+
+  handleLogOut(){
+    this.isSignedIn = false
+    
   }
 
   CreateRecord() {

@@ -4,6 +4,22 @@
     {{title}}
   </h1>
 
+  <div *ngIf="!isSignedIn">
+    <h2>Sign Up</h2>
+    <input type="text" #emailSignUp/>
+    <input type="text" #passwordSignUp/>
+    <button (click)="onSignUp(emailSignUp.value,passwordSignUp.value)">Sign Up</button>
+  </div>
+  <hr>
+  <div *ngIf="!isSignedIn">
+    <h2>Sign In</h2>
+    <input type="text" #email/>
+    <input type="text" #password/>
+    <button (click)="onSignIn(email.value,password.value)">Sign In</button>
+  </div>
+
+  <app-homepage *ngIf="isSignedIn" (isLogOut)="handleLogOut()"></app-homepage>
+
   <div class="row" style="margin-top: 25px;">
     <div class="col-md-3">
       <input type="text" class="form-control" [(ngModel)]="userName" placeholder="Name">
@@ -56,5 +72,7 @@
     </div>
   </div>
 
+  
 
 </div>
+
