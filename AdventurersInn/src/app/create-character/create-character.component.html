@@ -1,0 +1,15 @@
+<div class="row" style="margin-top: 25px;">
+    <div class="col-md-3">
+      <input type="text" class="form-control" [(ngModel)]="userName" placeholder="Name">
+    </div>
+    <div class="col-md-3">
+      <input type="text" class="form-control" [(ngModel)]="userLevel" placeholder="Level">
+    </div>
+    <div class="col-md-3">
+      <input type="text" class="form-control" [(ngModel)]="userCharacter" placeholder="Character">
+    </div>
+    <div class="col-md-3">
+      <button type="button" (click)="CreateRecord()" [disabled]="!userName || !userLevel || !userCharacter" class="btn btn-primary">+
+        Create User</button>
+    </div>
+  </div>

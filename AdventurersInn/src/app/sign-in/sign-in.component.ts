@@ -1,26 +1,30 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../services/crudservice';
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+  selector: 'app-sign-in',
+  templateUrl: './sign-in.component.html',
+  styleUrls: ['./sign-in.component.css']
 })
-export class HomepageComponent implements OnInit {
+export class SignInComponent implements OnInit {
+  title = 'Firestore CRUD Operations Users App';
+
   isSignedIn = false
+
   users: any;
   userName: string;
   userLevel: number;
   userCharacter: string;
 
-  @Output() isLogOut = new EventEmitter<void>()
-  constructor(public crudService: CrudService) { }
+  constructor(
+    public crudService: CrudService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     if(localStorage.getItem('user') !== null)
     this.isSignedIn = true
     else
     this.isSignedIn = false 
+
     this.crudService.read_Users().subscribe(data => {
 
       this.users = data.map(e => {
@@ -53,7 +57,6 @@ export class HomepageComponent implements OnInit {
     this.isSignedIn = false
     
   }
-
 
   CreateRecord() {
     let record = {};

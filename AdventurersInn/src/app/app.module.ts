@@ -14,6 +14,14 @@ import { UpdateUserComponent } from './update-user/update-user.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { CrudService } from './services/crudservice';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from  '@angular/material/toolbar';
+import { MatIconModule } from  '@angular/material/icon';
+import { MatSidenavModule } from  '@angular/material/sidenav';
+import { MatListModule } from  '@angular/material/list';
+import { MatButtonModule } from  '@angular/material/button';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { CreateCharacterComponent } from './create-character/create-character.component';
 
 
 @NgModule({
@@ -23,7 +31,9 @@ import { CrudService } from './services/crudservice';
     ReadUsersComponent,
     UpdateUserComponent,
     DeleteUserComponent,
-    HomepageComponent
+    HomepageComponent,
+    SignInComponent,
+    CreateCharacterComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +41,15 @@ import { CrudService } from './services/crudservice';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+
+    //MatSliderModule,
   ],
   providers: [CrudService],
   bootstrap: [AppComponent]
