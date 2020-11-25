@@ -32,43 +32,12 @@ export class HomepageComponent implements OnInit {
           Character: e.payload.doc.data()['Character'],
         };
       })
-      console.log(this.users);
-
     });
-  }
-
-  async onSignUp(email:string,password:string){
-    await this.crudService.signUp(email,password)
-    if(this.crudService.isLoggedIn)
-    this.isSignedIn = true
-  }
-
-  async onSignIn(email:string,password:string){
-    await this.crudService.signIn(email,password)
-    if(this.crudService.isLoggedIn)
-    this.isSignedIn = true
   }
 
   handleLogOut(){
     this.isSignedIn = false
     
-  }
-
-
-  CreateRecord() {
-    let record = {};
-    record['Name'] = this.userName;
-    record['Level'] = this.userLevel;
-    record['Character'] = this.userCharacter;
-    this.crudService.create_NewUser(record).then(resp => {
-      this.userName = "";
-      this.userLevel = undefined;
-      this.userCharacter = "";
-      console.log(resp);
-    })
-      .catch(error => {
-        console.log(error);
-      });
   }
 
   RemoveRecord(rowID) {

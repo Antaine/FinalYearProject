@@ -24,7 +24,6 @@ export class CreateCharacterComponent implements OnInit {
     this.isSignedIn = true
     else
     this.isSignedIn = false 
-
     this.crudService.read_Users().subscribe(data => {
 
       this.users = data.map(e => {
@@ -36,21 +35,8 @@ export class CreateCharacterComponent implements OnInit {
           Character: e.payload.doc.data()['Character'],
         };
       })
-      console.log(this.users);
 
     });
-  }
-
-  async onSignUp(email:string,password:string){
-    await this.crudService.signUp(email,password)
-    if(this.crudService.isLoggedIn)
-    this.isSignedIn = true
-  }
-
-  async onSignIn(email:string,password:string){
-    await this.crudService.signIn(email,password)
-    if(this.crudService.isLoggedIn)
-    this.isSignedIn = true
   }
 
   handleLogOut(){
@@ -72,26 +58,6 @@ export class CreateCharacterComponent implements OnInit {
       .catch(error => {
         console.log(error);
       });
-  }
-
-  RemoveRecord(rowID) {
-    this.crudService.delete_User(rowID);
-  }
-
-  EditRecord(record) {
-    record.isEdit = true;
-    record.EditName = record.Name;
-    record.EditLevel = record.Level;
-    record.EditCharacter = record.Character;
-  }
-
-  UpdateRecord(recordRow) {
-    let record = {};
-    record['Name'] = recordRow.EditName;
-    record['Level'] = recordRow.EditLevel;
-    record['Character'] = recordRow.EditCharacter;
-    this.crudService.update_User(recordRow.id, record);
-    recordRow.isEdit = false;
   }
 
 }
