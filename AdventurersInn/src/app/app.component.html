@@ -1,30 +1,27 @@
-<div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #E10000">
+  <a class="navbar-brand" href="#">AdventuersInn</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <!-- links to routes for pages in nav-bar -->
+          <li class="nav-item">
+              <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" routerLink="/createcharacter" routerLinkActive="active">Create Character</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav">
+          <a class="nav-link" routerLink="/signin" *ngIf="!isSignedIn" routerLinkActive="active">SignIn</a>
+          <a class="nav-link" routerLink="/signup" *ngIf="!isSignedIn" routerLinkActive="active">SignUp</a>
+         <a class="nav-link" style="cursor:pointer" *ngIf="isSignedIn" (click)="logOut()">Logout</a>
+      </ul>
+  </div>
+</nav>
 
-  <!-- Navbar-->
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <button mat-icon-button>
-    <!--  <mat-icon (click)="sidenav.toggle()">menu</mat-icon>-->
-      </button>
-      <h1>The Adventurers Inn</h1>
-      <span class="menu-spacer"></span>
-      <div>
-        <a mat-button routerLink="/home"> Home </a>
-        <a mat-button routerLink="/signup"> Signup </a>
-        <a mat-button routerLink="/signin"> Sign in </a>
-        <a mat-button routerLink="/createcharacter"> Create Character </a>
-       <!-- <a mat-button (click)="logOut()"> Log out </a>-->
-      </div>
-    </mat-toolbar-row>
-  </mat-toolbar>
-
-  <!-- End of Nabar-->
-
-
-
-
-  
-  
+<!-- render linked page in a container class-->
+<div class="container-page">
   <router-outlet></router-outlet>
 </div>
-

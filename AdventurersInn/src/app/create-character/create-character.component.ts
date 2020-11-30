@@ -9,7 +9,7 @@ import { CrudService } from '../services/crudservice';
 export class CreateCharacterComponent implements OnInit {
   title = 'Firestore CRUD Operations Users App';
 
-  isSignedIn = false
+  //isSignedIn = false
 
   users: any;
   userName: string;
@@ -20,10 +20,10 @@ export class CreateCharacterComponent implements OnInit {
     public crudService: CrudService) { }
 
   ngOnInit() {
-    if(localStorage.getItem('user') !== null)
+    /*if(localStorage.getItem('user') !== null)
     this.isSignedIn = true
     else
-    this.isSignedIn = false 
+    this.isSignedIn = false */
     this.crudService.read_Users().subscribe(data => {
 
       this.users = data.map(e => {
@@ -39,10 +39,10 @@ export class CreateCharacterComponent implements OnInit {
     });
   }
 
-  handleLogOut(){
+  /*handleLogOut(){
     this.isSignedIn = false
     
-  }
+  }*/
 
   CreateRecord() {
     let record = {};

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CrudService } from './services/crudservice';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { MatSidenavModule } from  '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +13,7 @@ export class AppComponent  implements OnInit {
 
   isSignedIn = false
 
+  @Output() isLogOut = new EventEmitter<void>()
   constructor(
     public crudService: CrudService) { }
 
@@ -24,4 +24,9 @@ export class AppComponent  implements OnInit {
     this.isSignedIn = false 
   }
 
+  logOut(){
+    this.crudService.logOut()
+    this.isLogOut.emit()
+    this.isSignedIn = false
+  }
 }

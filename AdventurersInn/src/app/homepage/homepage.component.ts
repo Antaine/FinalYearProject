@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CrudService } from '../services/crudservice';
 
 @Component({
@@ -7,20 +7,15 @@ import { CrudService } from '../services/crudservice';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-  isSignedIn = false
+ // isSignedIn = false
   users: any;
   userName: string;
   userLevel: number;
   userCharacter: string;
 
-  @Output() isLogOut = new EventEmitter<void>()
   constructor(public crudService: CrudService) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('user') !== null)
-    this.isSignedIn = true
-    else
-    this.isSignedIn = false 
     this.crudService.read_Users().subscribe(data => {
 
       this.users = data.map(e => {
@@ -33,11 +28,6 @@ export class HomepageComponent implements OnInit {
         };
       })
     });
-  }
-
-  handleLogOut(){
-    this.isSignedIn = false
-    
   }
 
   RemoveRecord(rowID) {
