@@ -13,3 +13,28 @@ The two cloud storage systems will are looking at are AWS(Amazon) and Azure(Micr
 We will be setting up our accounts for these applications also."
 
 Week 2 - 
+Colin set up the virtual machine on Azure to host the front end - C
+I set up the basic database and conected it to a local application - A
+I got sick for 2 days -A
+
+Week 3 -
+I got CRUD functionality working with the database for making characters, editing, deleting and reading -A
+I got the VM enviorment working and hosting the application -C
+The VM talks to the database - A/C
+Upcoming projects are starting
+
+Week 4 -
+Improved the database design - A/C
+Assesments - C
+
+Week 5 -
+User Table in the database - A
+Log In & Signup - C
+
+Week 6 - 
+Angular Routing and Basic Navbar -A
+Bootstrap Set up for project -C
+
+Week 7 -
+Improved navbar and sign up/sign In with Bootstrap implemented - C
+UML Diagram of datatbase & comments/Tidying up of code - A
