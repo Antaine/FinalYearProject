@@ -34,7 +34,8 @@ Log In & Signup - C
 Week 6 - 
 Angular Routing and Basic Navbar -A
 Bootstrap Set up for project -C
+Bug involving sign in not working after abstracting the code - A/C
 
 Week 7 -
-Improved navbar and sign up/sign In with Bootstrap implemented - C
+Improved Navbar design and fixed the sign in bug. Implemented Bootstrap to style pages - C
 UML Diagram of datatbase & comments/Tidying up of code - A
