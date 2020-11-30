@@ -1,8 +1,9 @@
 TO DO -
-Security
-Log In
-CSS
-Design of App & Database
+Log In characters Display.
+Posting to form.
+Sign Up adds to user Table.
+Docker.
+Improved database.
 
 
 DONE -
@@ -14,3 +15,8 @@ Set up virtual machine for front end.
 Compare SQL and NoSQL
 Create a basic CRUD App.
 Put app on VM.
+Log In.
+Sign Up.
+Bootstrab.
+Navigation.
+Basic UML
