@@ -8,6 +8,7 @@ import { CrudService } from '../services/crudservice';
 })
 export class SigninComponent implements OnInit {
 
+//Signed in false by default
   isSignedIn = false;
 
   constructor(public crudService: CrudService) { }
@@ -15,6 +16,7 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //Signed In
   async onSignIn(email:string,password:string){
     await this.crudService.signIn(email,password)
     if(this.crudService.isLoggedIn)

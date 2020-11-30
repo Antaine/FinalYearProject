@@ -1,3 +1,4 @@
+<!-- Create Character Input -->
 <div class="row" style="margin-top: 25px;">
     <div class="col-md-3">
       <input type="text" class="form-control" [(ngModel)]="userName" placeholder="Name">
@@ -8,8 +9,10 @@
     <div class="col-md-3">
       <input type="text" class="form-control" [(ngModel)]="userCharacter" placeholder="Character">
     </div>
+    <!-- Submit Button -->
     <div class="col-md-3">
-      <button type="button" (click)="CreateRecord()" [disabled]="!userName || !userLevel || !userCharacter" class="btn btn-primary">+
-        Create User</button>
+      <button type="button" (click)="CreateRecord()" [disabled]="!userName || !userLevel || !userCharacter" class="btn btn-primary">Create User</button>
     </div>
+    <!-- End of Submit Button -->
   </div>
+  <!-- End of Character Input -->

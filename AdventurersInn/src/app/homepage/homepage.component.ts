@@ -7,15 +7,17 @@ import { CrudService } from '../services/crudservice';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
- // isSignedIn = false
+ // Variables
   users: any;
   userName: string;
   userLevel: number;
   userCharacter: string;
 
+  //Import Crud Service
   constructor(public crudService: CrudService) { }
 
   ngOnInit(): void {
+    //Initialize
     this.crudService.read_Users().subscribe(data => {
 
       this.users = data.map(e => {
@@ -29,18 +31,18 @@ export class HomepageComponent implements OnInit {
       })
     });
   }
-
+//Delete from Database
   RemoveRecord(rowID) {
     this.crudService.delete_User(rowID);
   }
-
+//Update Record
   EditRecord(record) {
     record.isEdit = true;
     record.EditName = record.Name;
     record.EditLevel = record.Level;
     record.EditCharacter = record.Character;
   }
-
+  //Push Record
   UpdateRecord(recordRow) {
     let record = {};
     record['Name'] = recordRow.EditName;

@@ -1,4 +1,3 @@
-
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CrudService } from './services/crudservice';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -9,8 +8,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent  implements OnInit {
+  //Initiallize
   title = 'Firestore CRUD Operations Users App';
-
   isSignedIn = false
 
   @Output() isLogOut = new EventEmitter<void>()
@@ -24,6 +23,7 @@ export class AppComponent  implements OnInit {
     this.isSignedIn = false 
   }
 
+  //Log Out
   logOut(){
     this.crudService.logOut()
     this.isLogOut.emit()

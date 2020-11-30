@@ -7,13 +7,16 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class CrudService{
 
+  //Not logged in by default
   isLoggedIn = false
 
+  //Authentication & Firestore
   constructor(
     private firestore: AngularFirestore,
     public fireAuth: AngularFireAuth
   ) { }
 
+  //Sign In Method
   async signIn(email: string, password : string){
     await this.fireAuth.signInWithEmailAndPassword(email,password)
     .then(res=>{
@@ -22,6 +25,7 @@ export class CrudService{
     })
   }
 
+  //Sign up Methods
   async signUp(email: string, password : string){
     await this.fireAuth.createUserWithEmailAndPassword(email,password)
     .then(res=>{
@@ -29,24 +33,24 @@ export class CrudService{
       localStorage.setItem('user',JSON.stringify(res.user))
     })
   }
-
+  //Log Out
   logOut(){
     this.fireAuth.signOut()
     localStorage.removeItem('user')
   }
-
+  //Create User
   create_NewUser(record) {
     return this.firestore.collection('Users').add(record);
   }
-
+  //Read User
   read_Users() {
     return this.firestore.collection('Users').snapshotChanges();
   }
-
+  //Update User
   update_User(recordID,record){
     this.firestore.doc('Users/' + recordID).update(record);
   }
-
+  //Delete User
   delete_User(record_id) {
     this.firestore.doc('Users/' + record_id).delete();
   }

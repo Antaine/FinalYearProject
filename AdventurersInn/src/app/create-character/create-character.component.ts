@@ -7,25 +7,20 @@ import { CrudService } from '../services/crudservice';
   styleUrls: ['./create-character.component.css']
 })
 export class CreateCharacterComponent implements OnInit {
+  //Variables
   title = 'Firestore CRUD Operations Users App';
-
-  //isSignedIn = false
-
   users: any;
   userName: string;
   userLevel: number;
   userCharacter: string;
 
   constructor(
+    //CRUD Service Import
     public crudService: CrudService) { }
 
   ngOnInit() {
-    /*if(localStorage.getItem('user') !== null)
-    this.isSignedIn = true
-    else
-    this.isSignedIn = false */
+    //Initialize
     this.crudService.read_Users().subscribe(data => {
-
       this.users = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -38,12 +33,7 @@ export class CreateCharacterComponent implements OnInit {
 
     });
   }
-
-  /*handleLogOut(){
-    this.isSignedIn = false
-    
-  }*/
-
+  //Create Character Method
   CreateRecord() {
     let record = {};
     record['Name'] = this.userName;
@@ -59,5 +49,4 @@ export class CreateCharacterComponent implements OnInit {
         console.log(error);
       });
   }
-
 }
