@@ -54,4 +54,24 @@ export class CrudService{
   delete_User(record_id) {
     this.firestore.doc('Users/' + record_id).delete();
   }
+
+  //Create Post
+  post_Forum(record) {
+    return this.firestore.collection('Forums').add(record);
+  }
+
+  //Read Posts
+  read_Forums() {
+    return this.firestore.collection('Forums').snapshotChanges();
+  }
+
+  //Delete User
+  delete_Post(record_id) {
+     this.firestore.doc('Forums/' + record_id).delete();
+  }
+
+  //Update User
+  edit_Post(recordID,record){
+    this.firestore.doc('Forums/' + recordID).update(record);
+  }
 }

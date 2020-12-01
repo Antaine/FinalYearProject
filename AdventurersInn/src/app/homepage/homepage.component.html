@@ -1,5 +1,53 @@
 <div class="container">
-<!-- Displays Characters -->
+<!-- Forum Input-->
+  <h2 class="headingtitle">Forums </h2>
+  <form #postForm="ngForm" (ngSubmit)="CreatePost(postForm.value)">
+    <div class="formcontainer">
+      <label><b>User: </b></label>
+      <input type="text" class="userinput" name = "postName"  [(ngModel)]="postName" ngModel required/><br>
+      <label><b>Post: </b></label>
+      <textarea id="content" class="contenttextarea" name = "postContent"  [(ngModel)]="postContent" ngModel required></textarea><br>
+      <button type="submit" class="postbutton">Send Post</button>
+    </div>
+    <div>
+      <div>
+        <button class="fetchbutton">Fetch Posts</button> |
+        <button class="clearbutton">Clear Posts</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Displays Posts -->
+  <div class="row" style="margin-top: 25px;">
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem;" *ngFor="let item of forums">
+        <div class="card-body" *ngIf="!item.isEdit; else elseBlock">
+          <h5  class="d-inline p-2 bg-dark  text-white">{{item.PostContent}}</h5><br>
+          <h6  class="d-inline p-2 bg-dark  text-white">User: {{item.PostName}} </h6>
+          <a href="#" class="card-link" (click)="EditPost(item)">Edit</a>
+          <a href="#" class="card-link" (click)="RemovePost(item.id)">Delete</a>
+        </div>
+  <!-- Edit menu-->
+  <ng-template #elseBlock>
+    <div class="card-body">
+      <h5 class="card-title">Edit</h5>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-12">
+              <input type="text" class="form-control" [(ngModel)]="item.PostContent" placeholder="edit name">
+              <input type="text" class="form-control" [(ngModel)]="item.PostName" placeholder="edit name">
+            </div>
+          </div>
+        </div>
+      <!-- Buttons -->
+      <a href="#" class="card-link" (click)="item.isEdit = false">Cancel</a>
+      <a href="#" class="card-link" (click)="UpdatePost(item)">Update</a>
+    </div>
+  </ng-template>
+</div>
+
+<div>
+  <!-- Displays Characters -->
   <div class="row" style="margin-top: 25px;">
     <div class="col-md-3">
       <div class="card" style="width: 18rem;" *ngFor="let item of users">
@@ -33,7 +81,6 @@
   <a href="#" class="card-link" (click)="UpdateRecord(item)">Update</a>
     </div>
   </ng-template>
-  
-  <router-outlet></router-outlet>
-</div>
+  </div>
 
+  <router-outlet></router-outlet>

@@ -13,13 +13,17 @@ export class HomepageComponent implements OnInit {
   userLevel: number;
   userCharacter: string;
 
+  forums: any;
+  postContent: string;
+  postName: string;
+
   //Import Crud Service
   constructor(public crudService: CrudService) { }
 
   ngOnInit(): void {
     //Initialize
     this.crudService.read_Users().subscribe(data => {
-
+      //User Table
       this.users = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -29,7 +33,19 @@ export class HomepageComponent implements OnInit {
           Character: e.payload.doc.data()['Character'],
         };
       })
+
     });
+    this.crudService.read_Forums().subscribe(data => {
+          //Fourm Table
+          this.forums = data.map(e => {
+            return {
+              id: e.payload.doc.id,
+              isEdit: false,
+              PostName: e.payload.doc.data()['PostName'],
+              PostContent: e.payload.doc.data()['PostContent'],
+            };
+          })
+        });
   }
 //Delete from Database
   RemoveRecord(rowID) {
@@ -45,10 +61,45 @@ export class HomepageComponent implements OnInit {
   //Push Record
   UpdateRecord(recordRow) {
     let record = {};
-    record['Name'] = recordRow.EditName;
     record['Level'] = recordRow.EditLevel;
     record['Character'] = recordRow.EditCharacter;
     this.crudService.update_User(recordRow.id, record);
+    recordRow.isEdit = false;
+  }
+
+    //Create Post Method
+    CreatePost(postData:{postName: string; postContent: string}) {
+      console.log(postData);
+     let record = {};
+      record['PostName'] = this.postName;
+      record['PostContent'] = this.postContent;
+      this.crudService.post_Forum(record).then(resp => {
+        this.postName = "";
+        this.postContent = "";
+        console.log(resp);
+      })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+
+  //Delete from Database
+  RemovePost(rowID) {
+    this.crudService.delete_Post(rowID);
+  }
+//Update Record
+  EditPost(record) {
+    record.isEdit = true;
+    record.EditPost = record.PostContent;
+    record.EditName = record.PostName;
+  }
+  //Push Record
+  UpdatePost(recordRow) {
+    let record = {};
+    record['PostContent'] = recordRow.PostContent;
+    record['PostName'] = recordRow.PostName;
+    console.log(recordRow.EditPost);
+    this.crudService.edit_Post(recordRow.id, record);
     recordRow.isEdit = false;
   }
 
