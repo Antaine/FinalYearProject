@@ -1,25 +1,21 @@
-<!--<div class="row pt-5">
-    <div class="col-md-4 mx-auto">
-        <div class="card" style="width: 25rem;">
-            <div class="card-body">-->
-            <!-- Sign Up Input-->
-            <!--<h2 class="card-title col-md-5 mx-auto float-left">Sign Up</h2>
-            <form class="form">
-                <div class="form-group">
-                    <input type="text" #emailSignUp class="form-control rounded-0 col-md-7 mx-auto float-left" style="width: 15rem;"/>
-                    <input type="text" #passwordSignUp class="form-control rounded-0 col-md-7 mx-auto" style="width: 15rem;"/>
-                    <hr>-->
-                    <!-- Submit Button-->
-                    <!--<button (click)="onSignUp(emailSignUp.value,passwordSignUp.value)" class="btn btn-dark float-right" style="background-color: #E10000">Sign Up</button>
-                </div>
-            </form>
+<div class="row pt-5">
+    <div class="col-md-5 mx-auto">
+        <div class="card rounded-0">
+            <div class="card-header">
+                <!-- Sign Up Input-->
+                <h3 class="mb-0">Sign Up</h3>
+            </div>
+            <div class="card-body">
+                <label>Email:</label>
+                <!--Input for Email-->
+                <input type="text" class="form-control rounded-0" style="width: 30rem;" #emailSignUp/>
+                <p></p>
+                <label>Password:</label>
+                <!--Input for Password-->
+                <input type="text" class="form-control rounded-0" style="width: 30rem;" #passwordSignUp/>
+                <!-- Submit Button-->
+                <button (click)="onSignUp(emailSignUp.value,passwordSignUp.value)" class="btn btn-dark float-right" style="background-color: #E10000">Sign Up</button>
+            </div>
         </div>
     </div>
-</div>-->
-
-<!-- Sign Up Input-->
-<h2>Sign Up</h2>
-<input type="text" #emailSignUp/>
-<input type="text" #passwordSignUp/>
-<!-- Submit Button-->
-<button (click)="onSignUp(emailSignUp.value,passwordSignUp.value)" routerLink="/home">Sign Up</button>
+</div>
