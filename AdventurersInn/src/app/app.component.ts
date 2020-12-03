@@ -12,7 +12,7 @@ export class AppComponent  implements OnInit {
   title = 'Firestore CRUD Operations Users App';
   isSignedIn = false
 
-  @Output() isLogOut = new EventEmitter<void>()
+  //@Output() isLogOut = new EventEmitter<void>()
   constructor(
     public crudService: CrudService) { }
 
@@ -26,7 +26,14 @@ export class AppComponent  implements OnInit {
   //Log Out
   logOut(){
     this.crudService.logOut()
-    this.isLogOut.emit()
+    //this.isLogOut.emit()
     this.isSignedIn = false
+  }
+
+  checkLogIn() {
+    if(localStorage.getItem('user') !== null)
+    this.isSignedIn = true
+    else
+    this.isSignedIn = false 
   }
 }

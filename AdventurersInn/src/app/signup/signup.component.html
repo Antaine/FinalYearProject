@@ -1,6 +1,25 @@
+<!--<div class="row pt-5">
+    <div class="col-md-4 mx-auto">
+        <div class="card" style="width: 25rem;">
+            <div class="card-body">-->
+            <!-- Sign Up Input-->
+            <!--<h2 class="card-title col-md-5 mx-auto float-left">Sign Up</h2>
+            <form class="form">
+                <div class="form-group">
+                    <input type="text" #emailSignUp class="form-control rounded-0 col-md-7 mx-auto float-left" style="width: 15rem;"/>
+                    <input type="text" #passwordSignUp class="form-control rounded-0 col-md-7 mx-auto" style="width: 15rem;"/>
+                    <hr>-->
+                    <!-- Submit Button-->
+                    <!--<button (click)="onSignUp(emailSignUp.value,passwordSignUp.value)" class="btn btn-dark float-right" style="background-color: #E10000">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>-->
+
 <!-- Sign Up Input-->
 <h2>Sign Up</h2>
 <input type="text" #emailSignUp/>
 <input type="text" #passwordSignUp/>
-<!-- Submit Button -->
-<button (click)="onSignUp(emailSignUp.value,passwordSignUp.value)">Sign Up</button>
+<!-- Submit Button-->
+<button (click)="onSignUp(emailSignUp.value,passwordSignUp.value)" routerLink="/home">Sign Up</button>

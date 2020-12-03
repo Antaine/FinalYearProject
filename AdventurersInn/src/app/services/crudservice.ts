@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,11 +34,13 @@ export class CrudService{
       localStorage.setItem('user',JSON.stringify(res.user))
     })
   }
+  
   //Log Out
   logOut(){
     this.fireAuth.signOut()
     localStorage.removeItem('user')
   }
+
   //Create User
   create_NewUser(record) {
     return this.firestore.collection('Users').add(record);
