@@ -38,4 +38,8 @@ Bug involving sign in not working after abstracting the code - A/C
 
 Week 7 -  
 Improved Navbar design and fixed the sign in bug. Implemented Bootstrap to style pages - C  
-UML Diagram of datatbase & comments/Tidying up of code - A  
+UML Diagram of datatbase & comments/Tidying up of code - A 
+Basic forum -A
+
+Week 8 -
+
