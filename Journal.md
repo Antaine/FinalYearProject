@@ -42,4 +42,9 @@ UML Diagram of datatbase & comments/Tidying up of code - A
 Basic forum -A  
   
 Week 8 -  
-Updated firebase security to only allow updates if user is logged in - A  
+Updated firebase security to only allow updates if user is logged in - A
+
+Semester 2 -
+
+Week 1 - Colin and I have moved to Galway. Whilw this has slowed down progress on the project we expect that we will catch up on the work duw to faster internet and being in the same house - A  
+As well we are reviwing our work and updating our plan accordingly as well as begining the dissertation. - A
