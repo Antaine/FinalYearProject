@@ -24,8 +24,8 @@
         <div class="card-body" *ngIf="!item.isEdit; else elseBlock">
           <h5  class="d-inline p-2 bg-dark  text-white">{{item.PostContent}}</h5><br>
           <h6  class="d-inline p-2 bg-dark  text-white">User: {{item.PostName}} </h6>
-          <a href="#" class="card-link" (click)="EditPost(item)">Edit</a>
-          <a href="#" class="card-link" (click)="RemovePost(item.id)">Delete</a>
+          <a href="/home" class="card-link" (click)="EditPost(item)">Edit</a>
+          <a href="/home" class="card-link" (click)="RemovePost(item.id)">Delete</a>
         </div>
   <!-- Edit menu-->
   <ng-template #elseBlock>
@@ -40,8 +40,8 @@
           </div>
         </div>
       <!-- Buttons -->
-      <a href="#" class="card-link" (click)="item.isEdit = false">Cancel</a>
-      <a href="#" class="card-link" (click)="UpdatePost(item)">Update</a>
+      <a href="/home" class="card-link" (click)="item.isEdit = false">Cancel</a>
+      <a href="/home" class="card-link" (click)="UpdatePost(item)">Update</a>
     </div>
   </ng-template>
 </div>
@@ -55,8 +55,8 @@
           <h5 class="card-title">{{item.Name}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">Level: {{item.Level}} </h6>
           <p class="card-text">Character: {{item.Character}}</p>
-          <a href="#" class="card-link" (click)="EditRecord(item)">Edit</a>
-          <a href="#" class="card-link" (click)="RemoveRecord(item.id)">Delete</a>
+          <a href="/home" class="card-link" (click)="EditRecord(item)">Edit</a>
+          <a href="/home" class="card-link" (click)="RemoveRecord(item.id)">Delete</a>
         </div>
 
 <!-- Edit  & Delete options-->
@@ -77,8 +77,8 @@
           </div>
         </div>
 <!-- Buttons -->
-  <a href="#" class="card-link" (click)="item.isEdit = false">Cancel</a>
-  <a href="#" class="card-link" (click)="UpdateRecord(item)">Update</a>
+  <a href="/home" class="card-link" (click)="item.isEdit = false">Cancel</a>
+  <a href="/home" class="card-link" (click)="UpdateRecord(item)">Update</a>
     </div>
   </ng-template>
   </div>
