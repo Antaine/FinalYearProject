@@ -70,15 +70,19 @@ export class CrudService{
     //return this.firestore.collection('Users').doc(this.testEmail).collection("Characters").add;
   }
 
-  //Create User
+  //Create Character
   create_NewCharacter(record) {
       console.log("New Character "+ this.testEmail);
       return this.firestore.collection('Users').doc(this.testEmail).collection("Characters").add(record);
-      //db.collection("app").document("users").collection(uid).document("notifications")
     }
+    
   //Read User
   read_Users() {
     return this.firestore.collection('Users').snapshotChanges();
+  }
+  //Read Characters
+  read_Characters() {
+    return this.firestore.collection('Users').doc(this.testEmail).collection("Characters").snapshotChanges();
   }
   //Update User
   update_User(recordID,record){

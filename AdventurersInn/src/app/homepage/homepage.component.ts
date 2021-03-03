@@ -23,7 +23,7 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit(): void {
     //Initialize
-    this.crudService.read_Users().subscribe(data => {
+    this.crudService.read_Characters().subscribe(data => {
       //User Table
       this.users = data.map(e => {
         return {
