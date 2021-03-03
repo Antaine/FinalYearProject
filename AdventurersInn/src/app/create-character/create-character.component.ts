@@ -40,14 +40,14 @@ export class CreateCharacterComponent implements OnInit {
     record['Level'] = this.userLevel;
     record['Character'] = this.userCharacter;
     
-    this.crudService.create_NewUser(record).then(resp => {
+    this.crudService.create_NewCharacter(record).then(resp => {
       this.userName = this.userName;
       this.userLevel = undefined;
       this.userCharacter = "";
       console.log(resp);
     })
       .catch(error => {
-        console.log(error);
+       console.log(error);
       });
   }
 }

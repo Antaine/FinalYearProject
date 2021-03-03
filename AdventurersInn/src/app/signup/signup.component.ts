@@ -44,7 +44,7 @@ export class SignupComponent implements OnInit {
   CreateUser() {
     let record = {};
     record['Email'] = this.userEmail;
-    //console.log("Sign Up Email: "+ this.userEmail);
+    console.log("Sign Up Email: "+ this.userEmail);
     this.crudService.create_NewUser(record).then(resp => {
       this.userEmail = "";
       console.log(resp);

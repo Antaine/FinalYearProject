@@ -10,7 +10,7 @@ export class CrudService{
 
   //Not logged in by default
   isLoggedIn = false;
-  testEmail: string;
+  testEmail = localStorage.getItem('uEmail');
   //email = localStorage.getItem('uEmail');
 
   //Authentication & Firestore
@@ -62,9 +62,19 @@ export class CrudService{
     return this.firestore.collection('Users').doc(this.testEmail).set({});
   }
 
+   //Create User
+   create_CharacterCollection(record) {
+    console.log("Create Email: "+ this.testEmail);
+    return this.firestore.collection('users').doc(this.testEmail).collection("Characters").add;
+
+    //return this.firestore.collection('Users').doc(this.testEmail).collection("Characters").add;
+  }
+
   //Create User
   create_NewCharacter(record) {
-      return this.firestore.collection('Users').add(record);
+      console.log("New Character "+ this.testEmail);
+      return this.firestore.collection('Users').doc(this.testEmail).collection("Characters").add(record);
+      //db.collection("app").document("users").collection(uid).document("notifications")
     }
   //Read User
   read_Users() {
