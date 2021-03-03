@@ -64,8 +64,8 @@ export class HomepageComponent implements OnInit {
   //Push Record
   UpdateRecord(recordRow) {
     let record = {};
-    record['Level'] = recordRow.EditLevel;
     record['Character'] = recordRow.EditCharacter;
+    record['Level'] = recordRow.EditLevel;
     this.crudService.update_User(recordRow.id, record);
     recordRow.isEdit = false;
   }

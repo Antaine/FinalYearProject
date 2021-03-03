@@ -10,7 +10,7 @@ export class CreateCharacterComponent implements OnInit {
   //Variables
   title = 'Firestore CRUD Operations Users App';
   users: any;
-  userName: string;
+  userName: string = localStorage.getItem('uEmail');
   userLevel: number;
   userCharacter: string;
 
@@ -39,8 +39,9 @@ export class CreateCharacterComponent implements OnInit {
     record['Name'] = this.userName;
     record['Level'] = this.userLevel;
     record['Character'] = this.userCharacter;
+    
     this.crudService.create_NewUser(record).then(resp => {
-      this.userName = "";
+      this.userName = this.userName;
       this.userLevel = undefined;
       this.userCharacter = "";
       console.log(resp);
