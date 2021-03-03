@@ -11,6 +11,7 @@ export class AppComponent  implements OnInit {
   //Initiallize
   title = 'Firestore CRUD Operations Users App';
   isSignedIn = false
+  //UserEmail = localStorage.getItem('uEmail');
 
   //@Output() isLogOut = new EventEmitter<void>()
   constructor(

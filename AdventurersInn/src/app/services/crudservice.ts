@@ -9,7 +9,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class CrudService{
 
   //Not logged in by default
-  isLoggedIn = false
+  isLoggedIn = false;
+  testEmail: string;
+  //email = localStorage.getItem('uEmail');
 
   //Authentication & Firestore
   constructor(
@@ -25,6 +27,8 @@ export class CrudService{
       localStorage.setItem('user',JSON.stringify(res.user));
       localStorage.setItem('uId',JSON.stringify(res.user.uid));
       localStorage.setItem('uEmail',JSON.stringify(res.user.email));
+      this.testEmail = localStorage.getItem('uEmail');
+      console.log("Sign In Email: "+ email);
     })
   }
 
@@ -34,19 +38,34 @@ export class CrudService{
     .then(res=>{
       this.isLoggedIn = true
       localStorage.setItem('user',JSON.stringify(res.user))
+      localStorage.setItem('uId',JSON.stringify(res.user.uid));
+      localStorage.setItem('uEmail',JSON.stringify(res.user.email));
+      this.testEmail = localStorage.getItem('uEmail');
+      console.log("Sign Up Email: "+ this.testEmail);
     })
   }
   
   //Log Out
   logOut(){
-    this.fireAuth.signOut()
-    localStorage.removeItem('user')
+    this.fireAuth.signOut();
+    localStorage.removeItem('user');
+    localStorage.removeItem('uId');
+    console.log(" Delete Email: "+ this.testEmail);
+    this.testEmail ="";
+    localStorage.removeItem('uEmail');
+    console.log("Deleted Email: "+ this.testEmail);
   }
 
   //Create User
   create_NewUser(record) {
-    return this.firestore.collection('Users').add(record);
+    console.log("Create Email: "+ this.testEmail);
+    return this.firestore.collection('Users').doc(this.testEmail).set({});
   }
+
+  //Create User
+  create_NewCharacter(record) {
+      return this.firestore.collection('Users').add(record);
+    }
   //Read User
   read_Users() {
     return this.firestore.collection('Users').snapshotChanges();
