@@ -18,7 +18,9 @@ export class AppComponent  implements OnInit {
 
   ngOnInit() {
     if(localStorage.getItem('user') !== null)
-    this.isSignedIn = true
+    {this.isSignedIn = true
+    console.log(localStorage.getItem('uId'));
+    console.log(localStorage.getItem('uEmail'));}
     else
     this.isSignedIn = false 
   }
@@ -32,7 +34,7 @@ export class AppComponent  implements OnInit {
 
   checkLogIn() {
     if(localStorage.getItem('user') !== null)
-    this.isSignedIn = true
+    this.isSignedIn = true;
     else
     this.isSignedIn = false 
   }

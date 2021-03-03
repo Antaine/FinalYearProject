@@ -12,6 +12,7 @@ export class HomepageComponent implements OnInit {
   userName: string;
   userLevel: number;
   userCharacter: string;
+  email: string;
 
   forums: any;
   postContent: string;
@@ -33,8 +34,10 @@ export class HomepageComponent implements OnInit {
           Character: e.payload.doc.data()['Character'],
         };
       })
+    })
+    if(localStorage.getItem('user') !== null){
+      this.email = localStorage.getItem('uEmail');}
 
-    });
     this.crudService.read_Forums().subscribe(data => {
           //Fourm Table
           this.forums = data.map(e => {
@@ -71,7 +74,7 @@ export class HomepageComponent implements OnInit {
     CreatePost(postData:{postName: string; postContent: string}) {
       console.log(postData);
      let record = {};
-      record['PostName'] = this.postName;
+      record['PostName'] =this.email;
       record['PostContent'] = this.postContent;
       this.crudService.post_Forum(record).then(resp => {
         this.postName = "";

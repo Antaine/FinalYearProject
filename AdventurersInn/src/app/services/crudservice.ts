@@ -22,7 +22,9 @@ export class CrudService{
     await this.fireAuth.signInWithEmailAndPassword(email,password)
     .then(res=>{
       this.isLoggedIn = true
-      localStorage.setItem('user',JSON.stringify(res.user))
+      localStorage.setItem('user',JSON.stringify(res.user));
+      localStorage.setItem('uId',JSON.stringify(res.user.uid));
+      localStorage.setItem('uEmail',JSON.stringify(res.user.email));
     })
   }
 

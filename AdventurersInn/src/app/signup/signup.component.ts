@@ -13,6 +13,7 @@ export class SignupComponent implements OnInit {
   isSignedIn = false
   users: any;
   userEmail: string;
+  userName: string;
   constructor(public crudService: CrudService,
     private router: Router,
     private app: AppComponent) { }
