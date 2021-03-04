@@ -14,6 +14,9 @@ import { CreateCharacterComponent } from './create-character/create-character.co
 import { HomepageComponent } from './homepage/homepage.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
+import { ForumsComponent } from './forums/forums.component';
+import { SocialComponent } from './social/social.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import { SigninComponent } from './signin/signin.component';
     HomepageComponent,
     CreateCharacterComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    ForumsComponent,
+    SocialComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

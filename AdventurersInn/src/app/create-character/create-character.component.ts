@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CrudService } from '../services/crudservice';
 
 @Component({
@@ -16,7 +17,8 @@ export class CreateCharacterComponent implements OnInit {
 
   constructor(
     //CRUD Service Import
-    public crudService: CrudService) { }
+    public crudService: CrudService,
+    private router: Router) { }
 
   ngOnInit() {
     //Initialize
@@ -45,6 +47,7 @@ export class CreateCharacterComponent implements OnInit {
       this.userLevel = undefined;
       this.userCharacter = "";
       console.log(resp);
+      this.router.navigate(['/profile'])
     })
       .catch(error => {
        console.log(error);

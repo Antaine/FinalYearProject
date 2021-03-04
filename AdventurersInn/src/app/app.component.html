@@ -11,13 +11,19 @@
               <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" routerLink="/createcharacter" routerLinkActive="active">Create Character</a>
+            <a class="nav-link" routerLink="/profile" routerLinkActive="active">My Profile</a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/forum" routerLinkActive="active">Forums</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/social" routerLinkActive="active">Social</a>
           </li>
       </ul>
       <ul class="navbar-nav">
           <a class="nav-link" routerLink="/signin" *ngIf="!isSignedIn" routerLinkActive="active">SignIn</a>
           <a class="nav-link" routerLink="/signup" *ngIf="!isSignedIn" routerLinkActive="active">SignUp</a>
-         <a class="nav-link" routerLink="/signin" style="cursor:pointer" *ngIf="isSignedIn" (click)="logOut()">Logout</a>
+          <a class="nav-link" routerLink="/signin" style="cursor:pointer" *ngIf="isSignedIn" (click)="logOut()">Logout</a>
       </ul>
   </div>
 </nav>
