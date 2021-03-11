@@ -23,21 +23,6 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit(): void {
     //Initialize
-    this.crudService.read_Characters().subscribe(data => {
-      //User Table
-      this.users = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          isEdit: false,
-          Name: e.payload.doc.data()['Name'],
-          Level: e.payload.doc.data()['Level'],
-          Character: e.payload.doc.data()['Character'],
-        };
-      })
-    })
-    if(localStorage.getItem('user') !== null){
-      this.email = localStorage.getItem('uEmail');}
-
     this.crudService.read_Forums().subscribe(data => {
           //Fourm Table
           this.forums = data.map(e => {
@@ -50,52 +35,35 @@ export class HomepageComponent implements OnInit {
           })
         });
   }
-//Delete from Database
-  RemoveRecord(rowID) {
-    this.crudService.delete_User(rowID);
-  }
-//Update Record
-  EditRecord(record) {
-    record.isEdit = true;
-    record.EditName = record.Name;
-    record.EditLevel = record.Level;
-    record.EditCharacter = record.Character;
-  }
-  //Push Record
-  UpdateRecord(recordRow) {
-    let record = {};
-    record['Character'] = recordRow.EditCharacter;
-    record['Level'] = recordRow.EditLevel;
-    this.crudService.update_User(recordRow.id, record);
-    recordRow.isEdit = false;
-  }
 
-    //Create Post Method
-    CreatePost(postData:{postName: string; postContent: string}) {
-      console.log(postData);
-     let record = {};
-      record['PostName'] =this.email;
-      record['PostContent'] = this.postContent;
-      this.crudService.post_Forum(record).then(resp => {
-        this.postName = "";
-        this.postContent = "";
-        console.log(resp);
-      })
-        .catch(error => {
-          console.log(error);
-        });
-    }
+  //Create Post Method
+  CreatePost(postData:{postName: string; postContent: string}) {
+    console.log(postData);
+    let record = {};
+    record['PostName'] =this.email;
+    record['PostContent'] = this.postContent;
+    this.crudService.post_Forum(record).then(resp => {
+      this.postName = "";
+      this.postContent = "";
+      console.log(resp);
+    })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   //Delete from Database
   RemovePost(rowID) {
     this.crudService.delete_Post(rowID);
   }
-//Update Record
+  
+  //Update Record
   EditPost(record) {
     record.isEdit = true;
     record.EditPost = record.PostContent;
     record.EditName = record.PostName;
   }
+
   //Push Record
   UpdatePost(recordRow) {
     let record = {};

@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CreateCharacterComponent } from './create-character/create-character.component';
 import { ForumsComponent } from './forums/forums.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { MessagingComponent } from './messaging/messaging.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'signin', component: SigninComponent},
+  { path: 'messaging', component: MessagingComponent},
 ];
 
 @NgModule({

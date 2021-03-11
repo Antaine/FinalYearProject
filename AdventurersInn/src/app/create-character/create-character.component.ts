@@ -35,6 +35,12 @@ export class CreateCharacterComponent implements OnInit {
 
     });
   }
+
+  //Navigate back to My Profile Page
+  back(){
+    this.router.navigate(['/profile'])
+  }
+
   //Create Character Method
   CreateRecord() {
     let record = {};

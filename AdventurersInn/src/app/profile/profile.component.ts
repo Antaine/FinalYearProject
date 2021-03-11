@@ -38,17 +38,23 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['/createcharacter'])
   }
 
+  message(){
+    this.router.navigate(['/messaging'])
+  }
+
   //Delete from Database
   RemoveRecord(rowID) {
     this.crudService.delete_User(rowID);
   }
-//Update Record
+
+  //Update Record
   EditRecord(record) {
     record.isEdit = true;
     record.EditName = record.Name;
     record.EditLevel = record.Level;
     record.EditCharacter = record.Character;
   }
+
   //Push Record
   UpdateRecord(recordRow) {
     let record = {};

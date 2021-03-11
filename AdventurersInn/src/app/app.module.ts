@@ -17,6 +17,7 @@ import { SigninComponent } from './signin/signin.component';
 import { ForumsComponent } from './forums/forums.component';
 import { SocialComponent } from './social/social.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MessagingComponent } from './messaging/messaging.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ProfileComponent } from './profile/profile.component';
     SigninComponent,
     ForumsComponent,
     SocialComponent,
-    ProfileComponent
+    ProfileComponent,
+    MessagingComponent
   ],
   imports: [
     BrowserModule,
