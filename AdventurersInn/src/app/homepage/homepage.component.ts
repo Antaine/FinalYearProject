@@ -23,6 +23,7 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit(): void {
     //Initialize
+    this.email = localStorage.getItem('uEmail');
     this.crudService.read_Forums().subscribe(data => {
           //Fourm Table
           this.forums = data.map(e => {
@@ -54,11 +55,13 @@ export class HomepageComponent implements OnInit {
 
   //Delete from Database
   RemovePost(rowID) {
+    console.log("RemovePost: "+rowID);
     this.crudService.delete_Post(rowID);
   }
   
   //Update Record
   EditPost(record) {
+    console.log("EditPost: "+record.toString());
     record.isEdit = true;
     record.EditPost = record.PostContent;
     record.EditName = record.PostName;

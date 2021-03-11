@@ -11,6 +11,7 @@ export class CrudService{
   //Not logged in by default
   isLoggedIn = false;
   testEmail = localStorage.getItem('uEmail');
+  
   //email = localStorage.getItem('uEmail');
 
   //Authentication & Firestore
@@ -66,7 +67,7 @@ export class CrudService{
    //Create User
    create_CharacterCollection(record) {
     console.log("Create Email: "+ this.testEmail);
-    return this.firestore.collection('users').doc(this.testEmail).collection("Characters").add;
+    return this.firestore.collection('Users').doc(this.testEmail).collection("Characters").add;
 
     //return this.firestore.collection('Users').doc(this.testEmail).collection("Characters").add;
   }
@@ -106,7 +107,8 @@ export class CrudService{
 
   //Delete User
   delete_Post(record_id) {
-     this.firestore.doc('Forums/' + record_id).delete();
+    console.log("Delete Post: " + record_id);
+    this.firestore.doc('Forums/' + record_id).delete();
   }
 
   //Update User

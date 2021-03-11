@@ -11,6 +11,7 @@ export class AppComponent  implements OnInit {
   //Initiallize
   title = 'Firestore CRUD Operations Users App';
   isSignedIn = false
+  
   //UserEmail = localStorage.getItem('uEmail');
 
   //@Output() isLogOut = new EventEmitter<void>()
@@ -21,9 +22,9 @@ export class AppComponent  implements OnInit {
 
   ngOnInit() {
     if(localStorage.getItem('user') !== null)
-    {this.isSignedIn = true
-    console.log(localStorage.getItem('uId'));
-    console.log(localStorage.getItem('uEmail'));}
+    { this.isSignedIn = true
+      console.log(localStorage.getItem('uId'));
+      console.log(localStorage.getItem('uEmail'));}
     else
     this.isSignedIn = false 
   }
@@ -46,7 +47,7 @@ export class AppComponent  implements OnInit {
 
   checkLogIn() {
     if(localStorage.getItem('user') !== null)
-    this.isSignedIn = true;
+    this.isSignedIn = true
     else
     this.isSignedIn = false 
   }
