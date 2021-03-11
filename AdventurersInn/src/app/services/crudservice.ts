@@ -8,6 +8,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class CrudService{
 
+
   //Not logged in by default
   isLoggedIn = false;
   testEmail = localStorage.getItem('uEmail');
@@ -90,9 +91,17 @@ export class CrudService{
   update_User(recordID,record){
     this.firestore.doc('Users/' + recordID).update(record);
   }
+
+  update_Character(recordID,record){
+    this.firestore.collection('Users').doc(this.testEmail).collection("Characters").doc(recordID).update(record);
+  }
   //Delete User
   delete_User(record_id) {
     this.firestore.doc('Users/' + record_id).delete();
+  }
+
+  delete_Character(recordID){
+    this.firestore.doc('Users/'+this.testEmail+'/Characters/'+recordID).delete();
   }
 
   //Create Post

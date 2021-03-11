@@ -10,7 +10,7 @@ import { CrudService } from '../services/crudservice';
 export class ProfileComponent implements OnInit {
 
   //Variables
-  users: any;
+  characters: any;
   email: string;
 
   constructor(public crudService: CrudService,
@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
     //Initialize
     this.crudService.read_Characters().subscribe(data => {
       //User Table
-      this.users = data.map(e => {
+      this.characters = data.map(e => {
         return {
           id: e.payload.doc.id,
           isEdit: false,
@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
 
   //Delete from Database
   RemoveRecord(rowID) {
-    this.crudService.delete_User(rowID);
+    this.crudService.delete_Character(rowID);
   }
 
   //Update Record
@@ -60,7 +60,7 @@ export class ProfileComponent implements OnInit {
     let record = {};
     record['Character'] = recordRow.EditCharacter;
     record['Level'] = recordRow.EditLevel;
-    this.crudService.update_User(recordRow.id, record);
+    this.crudService.update_Character(recordRow.id, record);
     recordRow.isEdit = false;
   }
 }
