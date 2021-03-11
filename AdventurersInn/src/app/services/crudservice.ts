@@ -54,6 +54,7 @@ export class CrudService{
     this.testEmail ="";
     localStorage.removeItem('uEmail');
     console.log("Deleted Email: "+ this.testEmail);
+    this.isLoggedIn = false
   }
 
   //Create User

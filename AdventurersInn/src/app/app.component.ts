@@ -14,8 +14,10 @@ export class AppComponent  implements OnInit {
   //UserEmail = localStorage.getItem('uEmail');
 
   //@Output() isLogOut = new EventEmitter<void>()
-  constructor(
-    public crudService: CrudService) { }
+  constructor( 
+    public crudService: CrudService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     if(localStorage.getItem('user') !== null)
@@ -24,6 +26,15 @@ export class AppComponent  implements OnInit {
     console.log(localStorage.getItem('uEmail'));}
     else
     this.isSignedIn = false 
+  }
+
+  redirect(): boolean {
+    if (this.crudService.isLoggedIn) {
+      return true
+    } else {
+      this.router.navigate(['/signin'])
+      return false
+    }
   }
 
   //Log Out
