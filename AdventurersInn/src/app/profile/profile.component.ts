@@ -12,6 +12,13 @@ export class ProfileComponent implements OnInit {
   //Variables
   characters: any;
   email: string;
+  userName: string;
+  userLevel: number;
+  userCharacter: string;
+  postContent: string;
+  class
+
+  classes = ["Artificer", "Barbarian", "Bard", "Cleric","Druid"];
 
   constructor(public crudService: CrudService,
     private router: Router) { }
@@ -32,6 +39,25 @@ export class ProfileComponent implements OnInit {
     })
     if(localStorage.getItem('user') !== null){
       this.email = localStorage.getItem('uEmail');}
+  }
+
+  //Create Character Method
+  CreateRecord() {
+    let record = {};
+    record['Name'] = this.userName;
+    record['Level'] = this.userLevel;
+    record['Character'] = this.userCharacter;
+    
+    this.crudService.create_NewCharacter(record).then(resp => {
+      this.userName = this.userName;
+      this.userLevel = undefined;
+      this.userCharacter = "";
+      console.log(resp);
+      this.router.navigate(['/profile'])
+    })
+      .catch(error => {
+       console.log(error);
+      });
   }
 
   create(){

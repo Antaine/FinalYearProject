@@ -2,22 +2,31 @@
   <button (click)="create()" class="btn btn-dark float-center" style="background-color: #E10000">Create Character</button>
   <button (click)="message()" class="btn btn-dark float-center" style="background-color: #E10000">Messaging</button>
   <h1 style="margin-top: 25px;">
-    {{title}}
-  </h1>
 
+  </h1>
+<div class="card rounded-0">
+  <div class="card-header">
+    <h3 class="mb-0">Create Your Own Character</h3>
+  </div>
+  <div class="card-body">
+    <p></p>
+    <!-- Submit Button -->
+    <button type="button" (click)="CreateRecord()" [disabled]="!userName || !userLevel || !userCharacter" 
+      class="btn btn-dark float-right" style="background-color: #E10000">Create</button>
   <div class="row" style="margin-top: 25px;">
+
     <div class="col-md-3">
-      <input type="text" class="form-control" [(ngModel)]="userName" placeholder="Name">
+      <input type="text" class="form-control" [(ngModel)]="postContent" placeholder="Character">
+      <!-- Add Ng for to add options to select-->
+      <select>
+        <option ng-repeat="class in classes"class="form-control" style="width: 10rem;" [(ngModel)]="postContent" placeholder="">{{classes}}</option>
+      </select>
     </div>
+    
     <div class="col-md-3">
-      <input type="text" class="form-control" [(ngModel)]="userLevel" placeholder="Level">
-    </div>
-    <div class="col-md-3">
-      <input type="text" class="form-control" [(ngModel)]="userCharacter" placeholder="Character">
-    </div>
-    <div class="col-md-3">
-      <button type="button" (click)="CreateRecord()" [disabled]="!userName || !userLevel || !userCharacter" class="btn btn-primary">+
-        Create User</button>
+      <select>
+         <option ng-repeat="level in levels" placeholder="3"></option> 
+      </select>*
     </div>
   </div>
 
