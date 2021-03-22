@@ -39,14 +39,12 @@ export class ForumsComponent implements OnInit {
 
   //Create Post Method
   CreatePost(postData:{postName: string; postContent: string}) {
-    console.log(postData);
     let record = {};
     record['PostName'] = this.ngAuthService.userState.email;
     record['PostContent'] = this.postContent;
     this.crudService.post_Forum(record).then(resp => {
       this.postName = "";
       this.postContent = "";
-      console.log(resp);
     })
       .catch(error => {
         console.log(error);
@@ -55,13 +53,11 @@ export class ForumsComponent implements OnInit {
 
   //Delete from Database
   RemovePost(rowID) {
-    console.log("RemovePost: "+rowID);
     this.crudService.delete_Post(rowID);
   }
   
   //Update Record
   EditPost(record) {
-    console.log("EditPost: "+record.toString());
     record.isEdit = true;
     record.EditPost = record.PostContent;
     record.EditName = record.PostName;
@@ -72,7 +68,6 @@ export class ForumsComponent implements OnInit {
     let record = {};
     record['PostContent'] = recordRow.PostContent;
     record['PostName'] = recordRow.PostName;
-    console.log(recordRow.EditPost);
     this.crudService.edit_Post(recordRow.id, record);
     recordRow.isEdit = false;
   }

@@ -1,0 +1,49 @@
+<div class="container">
+    <!-- Forum Input-->
+      <h2 class="headingtitle">Messaging </h2>
+      <label style="color: #E10000"><h3><b>Welcome {{this.ngAuthService.userState.email}} to the Adventurers Inn</b></h3></label>
+      <form #postMessage="ngForm" (ngSubmit)="CreateMessage(postMessage.value)">
+        <div class="formcontainer">
+          <label><h3><b></b>Message: </h3></label>
+          <div>
+            <label><b>User: </b></label>
+            <input type="text" class="userinput" name = "messageName"  [(ngModel)]="messageName" ngModel required/><br> 
+            <textarea id="content" class="contenttextarea" name = "postContent"  [(ngModel)]="messageContent" ngModel required></textarea><br>
+            <button type="submit" class="postbutton btn btn-dark"  style="background-color: #E10000">Send Message</button>
+          </div>
+        </div>
+        <div>
+          <div>
+            <button class="fetchbutton btn btn-dark"  style="background-color: #E10000">Fetch Message</button> |
+            <button class="clearbutton btn btn-dark"  style="background-color: #E10000">Clear Message</button>
+          </div>
+        </div>
+      </form>
+    
+      <!-- Displays Message -->
+      <div class="row" style="margin-top: 25px;">
+        <div class="col-md-3">
+          <div class="card" style="width: 18rem;" *ngFor="let item of messages">
+            <div class="card-body" *ngIf="!item.isEdit; else elseBlock">
+              <h5 class="card-title">{{item.MessageContent}}</h5><br>
+              <h6 class="card-subtitle mb-2 text-muted">User: {{item.MessageName}} </h6>
+              <a class="card-link" (click)="EditMessage(item)">Edit</a>
+              <a class="card-link" (click)="RemoveMessage(item.id)">Delete</a>
+            </div>
+      <!-- Edit menu-->
+      <ng-template #elseBlock>
+        <div class="card-body">
+          <h5 class="card-title">Edit</h5>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="text" class="form-control" [(ngModel)]="item.MessageContent" placeholder="edit name">
+                </div>
+              </div>
+            </div>
+          <!-- Buttons -->
+          <a class="card-link" (click)="item.isEdit = false">Cancel</a>
+          <a  class="card-link" (click)="UpdateMessage(item)">Update</a>
+        </div>
+      </ng-template>
+    </div>

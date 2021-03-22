@@ -146,9 +146,20 @@ export class FireAuthenticationService {
   //Read Posts
   read_Forums() {return this.afs.collection('Forums').snapshotChanges();}
 
-  //Delete User
+  //Delete Post
   delete_Post(record_id) {this.afs.doc('Forums/' + record_id).delete();}
 
   //Update User
   edit_Post(recordID,record){this.afs.doc('Forums/' + recordID).update(record);}
+
+  //Create Message
+  post_Message(record) {return this.afs.collection('users').doc(this.userState.uid).collection("Messaging").add(record);}
+  post_Message2(record,target) {return this.afs.collection('users').doc(target).collection("Messaging").add(record);}
+
+  //Read Posts
+  read_Messages() {return this.afs.collection('users').doc(this.userState.uid).collection("Messaging").snapshotChanges();}
+  //Delete Message
+  delete_Message(record_id) {this.afs.doc('users/' + this.userState.uid+'/Messaging/'+record_id).delete();}
+  //Update Message
+  edit_Message(recordID,record){this.afs.collection('users').doc(this.userState.uid).collection("Messaging").doc(recordID).update(record);}
 }
