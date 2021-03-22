@@ -10,7 +10,6 @@ import { FireAuthenticationService } from "../services/fire-authentication.servi
 })
 export class CreateCharacterComponent implements OnInit {
   //Variables
-  title = 'Firestore CRUD Operations Users App';
   users: any;
   userName: string;
   user: any; 
@@ -32,13 +31,11 @@ export class CreateCharacterComponent implements OnInit {
         return {
           id: e.payload.doc.id,
           isEdit: false,
-
           Name: e.payload.doc.data()['Name'],
           Level: e.payload.doc.data()['Level'],
           Character: e.payload.doc.data()['Character'],
         };
       })
-
     });
   }
 
