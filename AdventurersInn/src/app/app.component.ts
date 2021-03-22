@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CrudService } from './services/crudservice';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { FireAuthenticationService } from "./services/fire-authentication.service";
 
 @Component({
   selector: 'app-root',
@@ -10,45 +11,26 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class AppComponent  implements OnInit {
   //Initiallize
   title = 'Firestore CRUD Operations Users App';
-  isSignedIn = false
+ // isSignedIn = false
   
   //UserEmail = localStorage.getItem('uEmail');
 
   //@Output() isLogOut = new EventEmitter<void>()
   constructor( 
     public crudService: CrudService,
+    public fireService: FireAuthenticationService,
     private router: Router
     ) { }
 
   ngOnInit() {
-    if(localStorage.getItem('user') !== null)
-    { this.isSignedIn = true
-      console.log(localStorage.getItem('uId'));
-      console.log(localStorage.getItem('uEmail'));}
-    else
-    this.isSignedIn = false 
-  }
+  } 
 
-  redirect(): boolean {
+ /* redirect(): boolean {
     if (this.crudService.isLoggedIn) {
       return true
     } else {
-      this.router.navigate(['/signin'])
+      this.router.navigate(['/sign-in'])
       return false
     }
-  }
-
-  //Log Out
-  logOut(){
-    this.crudService.logOut()
-    //this.isLogOut.emit()
-    this.isSignedIn = false
-  }
-
-  checkLogIn() {
-    if(localStorage.getItem('user') !== null)
-    this.isSignedIn = true
-    else
-    this.isSignedIn = false 
-  }
+  }*/
 }

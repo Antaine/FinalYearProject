@@ -1,21 +1,29 @@
-<div class="row pt-5">
-    <div class="col-md-5 mx-auto">
-        <div class="card rounded-0">
-            <div class="card-header">
-                <!-- Sign In Input-->
-                <h3 class="mb-0">Sign In</h3>
-            </div>
-            <div class="card-body">
-                <label>Email:</label>
-                <!--Input for Email-->
-                <input type="text" class="form-control rounded-0" style="width: 30rem;" #email/>
-                <p></p>
-                <label>Password:</label>
-                <!--Input for Password-->
-                <input type="text" class="form-control rounded-0" style="width: 30rem;" #password/>
-                <!-- Submit Button-->
-                <button (click)="onSignIn(email.value,password.value)" class="btn btn-dark float-right" style="background-color: #E10000">Sign In</button>
-            </div>
+<div class="displayTable">
+    <div class="displayTableCell">
+  
+      <div class="authBlock">
+        <h3>Signin</h3>
+        <div class="formGroup">
+          <input type="text" class="form-control" placeholder="Username" #userName required>
         </div>
+  
+        <div class="formGroup">
+          <input type="password" class="form-control" placeholder="Password" #userPassword required>
+        </div>
+  
+        <div class="formGroup">
+          <input type="button" class="btn btn-primary btn-block" value="Sign in"
+            (click)="ngAuthService.SignIn(userName.value, userPassword.value)">
+        </div>
+  
+        <div class="forgotPassword">
+          <span routerLink="/forgot-password">Forgot Password?</span>
+        </div>
+      </div>
+  
+      <div class="redirectToLogin">
+        <span>Not registered yet?<span class="redirect" routerLink="/sign-up"> Register</span></span>
+      </div>
+  
     </div>
-</div>
+  </div>

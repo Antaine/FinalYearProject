@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { CrudService } from '../services/crudservice';
+import { FireAuthenticationService } from "../services/fire-authentication.service";
 
 @Component({
   selector: 'app-forums',
@@ -9,21 +10,20 @@ import { CrudService } from '../services/crudservice';
 export class ForumsComponent implements OnInit {
  // Variables
   users: any;
-  userName: string;
   userLevel: number;
   userCharacter: string;
-  email: string;
-
+  user: any; 
   forums: any;
   postContent: string;
   postName: string;
 
   //Import Crud Service
-  constructor(public crudService: CrudService) { }
+  constructor(public crudService: FireAuthenticationService,
+    public ngAuthService: FireAuthenticationService) { }
 
   ngOnInit(): void {
     //Initialize
-    this.email = localStorage.getItem('uEmail');
+    
     this.crudService.read_Forums().subscribe(data => {
           //Fourm Table
           this.forums = data.map(e => {
@@ -41,7 +41,7 @@ export class ForumsComponent implements OnInit {
   CreatePost(postData:{postName: string; postContent: string}) {
     console.log(postData);
     let record = {};
-    record['PostName'] =this.email;
+    record['PostName'] = this.ngAuthService.userState.email;
     record['PostContent'] = this.postContent;
     this.crudService.post_Forum(record).then(resp => {
       this.postName = "";

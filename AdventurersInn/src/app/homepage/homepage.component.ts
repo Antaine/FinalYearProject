@@ -1,5 +1,5 @@
-import { Component, OnInit} from '@angular/core';
-import { CrudService } from '../services/crudservice';
+import { Component, OnInit } from '@angular/core';
+import { FireAuthenticationService } from "../services/fire-authentication.service";
 
 @Component({
   selector: 'app-homepage',
@@ -7,20 +7,10 @@ import { CrudService } from '../services/crudservice';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
- // Variables
-  users: any;
-  userName: string;
-  userLevel: number;
-  userCharacter: string;
-  email: string;
 
-  forums: any;
-  postContent: string;
-  postName: string;
-
-  //Import Crud Service
-  constructor(public crudService: CrudService) { }
+  constructor(public ngAuthService: FireAuthenticationService) { }
 
   ngOnInit(): void {
   }
+
 }

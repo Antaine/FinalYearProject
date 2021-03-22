@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudService } from '../services/crudservice';
+import { FireAuthenticationService } from "../services/fire-authentication.service";
 
 @Component({
   selector: 'app-create-character',
@@ -11,22 +12,27 @@ export class CreateCharacterComponent implements OnInit {
   //Variables
   title = 'Firestore CRUD Operations Users App';
   users: any;
-  userName: string = localStorage.getItem('uEmail');
+  userName: string;
+  user: any; 
   userLevel: number;
   userCharacter: string;
 
   constructor(
     //CRUD Service Import
-    public crudService: CrudService,
-    private router: Router) { }
+    public crudService: FireAuthenticationService,
+    private router: Router,
+    public ngAuthService: FireAuthenticationService) { }
 
   ngOnInit() {
     //Initialize
+    this.user = this.ngAuthService.userState;
+    this.userName = this.ngAuthService.userState.email;
     this.crudService.read_Users().subscribe(data => {
       this.users = data.map(e => {
         return {
           id: e.payload.doc.id,
           isEdit: false,
+
           Name: e.payload.doc.data()['Name'],
           Level: e.payload.doc.data()['Level'],
           Character: e.payload.doc.data()['Character'],

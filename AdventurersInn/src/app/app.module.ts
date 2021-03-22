@@ -12,25 +12,29 @@ import { CrudService } from './services/crudservice';
 import { AppComponent } from './app.component';
 import { CreateCharacterComponent } from './create-character/create-character.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { SignupComponent } from './signup/signup.component';
-import { SigninComponent } from './signin/signin.component';
+import { SignUpComponent } from './signup/signup.component';
+import { SignInComponent } from './signin/signin.component';
 import { ForumsComponent } from './forums/forums.component';
 import { SocialComponent } from './social/social.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MessagingComponent } from './messaging/messaging.component';
-
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { FireAuthenticationService } from "./services/fire-authentication.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     CreateCharacterComponent,
-    SignupComponent,
-    SigninComponent,
+    SignUpComponent,
+    SignInComponent,
     ForumsComponent,
     SocialComponent,
     ProfileComponent,
-    MessagingComponent
+    MessagingComponent,
+    ForgotPasswordComponent,
+    VerifyEmailComponent
   ],
   imports: [
     BrowserModule,

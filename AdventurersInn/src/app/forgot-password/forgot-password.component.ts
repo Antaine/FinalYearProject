@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FireAuthenticationService } from "../services/fire-authentication.service";
 
-
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.css']
 })
-
-export class SignUpComponent implements OnInit {
+export class ForgotPasswordComponent implements OnInit {
 
   constructor(public ngAuthService: FireAuthenticationService) { }
 

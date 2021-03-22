@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudService } from '../services/crudservice';
+import { FireAuthenticationService } from "../services/fire-authentication.service";
 
 @Component({
   selector: 'app-profile',
@@ -20,12 +21,12 @@ export class ProfileComponent implements OnInit {
 
   classes = ["Artificer", "Barbarian", "Bard", "Cleric","Druid"];
 
-  constructor(public crudService: CrudService,
+  constructor(public afs:FireAuthenticationService,
     private router: Router) { }
 
   ngOnInit(): void {
     //Initialize
-    this.crudService.read_Characters().subscribe(data => {
+    this.afs.read_Characters().subscribe(data => {
       //User Table
       this.characters = data.map(e => {
         return {
@@ -48,7 +49,7 @@ export class ProfileComponent implements OnInit {
     record['Level'] = this.userLevel;
     record['Character'] = this.userCharacter;
     
-    this.crudService.create_NewCharacter(record).then(resp => {
+    this.afs.create_NewCharacter(record).then(resp => {
       this.userName = this.userName;
       this.userLevel = undefined;
       this.userCharacter = "";
@@ -70,7 +71,7 @@ export class ProfileComponent implements OnInit {
 
   //Delete from Database
   RemoveRecord(rowID) {
-    this.crudService.delete_Character(rowID);
+    this.afs.delete_Character(rowID);
   }
 
   //Update Record
@@ -86,7 +87,7 @@ export class ProfileComponent implements OnInit {
     let record = {};
     record['Character'] = recordRow.EditCharacter;
     record['Level'] = recordRow.EditLevel;
-    this.crudService.update_Character(recordRow.id, record);
+    this.afs.update_Character(recordRow.id, record);
     recordRow.isEdit = false;
   }
 }
