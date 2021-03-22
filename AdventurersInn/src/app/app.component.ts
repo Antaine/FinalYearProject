@@ -9,13 +9,7 @@ import { FireAuthenticationService } from "./services/fire-authentication.servic
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent  implements OnInit {
-  //Initiallize
-  title = 'Firestore CRUD Operations Users App';
- // isSignedIn = false
-  
-  //UserEmail = localStorage.getItem('uEmail');
-
-  //@Output() isLogOut = new EventEmitter<void>()
+  private isSignedIn = false;
   constructor( 
     public crudService: CrudService,
     public fireService: FireAuthenticationService,
@@ -23,14 +17,6 @@ export class AppComponent  implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.isSignedIn = this.fireService.isLoggedIn;
   } 
-
- /* redirect(): boolean {
-    if (this.crudService.isLoggedIn) {
-      return true
-    } else {
-      this.router.navigate(['/sign-in'])
-      return false
-    }
-  }*/
 }

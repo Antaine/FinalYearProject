@@ -8,18 +8,9 @@ import {User} from "../services/fire-authentication.service";
   providedIn: 'root'
 })
 export class CrudService{
-
-  
-  //Not logged in by default
-
-  
-  //email = localStorage.getItem('uEmail');
-
-  //Authentication & Firestore
   constructor(
     private firestore: AngularFirestore,
     public fireAuth: AngularFireAuth,
- 
   ) { }
 
 }

@@ -21,9 +21,9 @@
           </li>
       </ul>
       <ul class="navbar-nav">
-          <a class="nav-link" routerLink="/sign-in" routerLinkActive="active">Sign-In</a>
-          <a class="nav-link" routerLink="/sign-up" routerLinkActive="active">Sign Up</a>
-          <a class="nav-link" routerLink="/signin" style="cursor:pointer" (click)="fireService.SignOut()">Logout</a>
+          <a class="nav-link" routerLink="/sign-in"  *ngIf="!fireService.isLoggedIn" routerLinkActive="active">Sign-In</a>
+          <a class="nav-link" routerLink="/sign-up"  *ngIf="!fireService.isLoggedIn" routerLinkActive="active">Sign Up</a>
+          <a class="nav-link" routerLink="/signin"  *ngIf="fireService.isLoggedIn"style="cursor:pointer" (click)="fireService.SignOut()">Logout</a>
       </ul>
   </div>
 </nav>

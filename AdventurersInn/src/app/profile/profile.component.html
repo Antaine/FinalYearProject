@@ -1,13 +1,14 @@
 <div class="container">
+  <!-- Header-->
   <button (click)="create()" class="btn btn-dark float-center" style="background-color: #E10000">Create Character</button>
   <button (click)="message()" class="btn btn-dark float-center" style="background-color: #E10000">Messaging</button>
-  <h1 style="margin-top: 25px;">
+  <h1 style="margin-top: 25px;"></h1>
 
-  </h1>
 <div class="card rounded-0">
   <div class="card-header">
     <h3 class="mb-0">Create Your Own Character</h3>
   </div>
+<!-- End of Header-->
   <div class="card-body">
     <p></p>
     <!-- Submit Button -->
@@ -30,6 +31,7 @@
     </div>
   </div>
 
+  <!-- Input-->
   <div class="row" style="margin-top: 25px;">
     <div class="col-md-3">
       <div class="card" style="width: 18rem;" *ngFor="let item of characters">
@@ -40,7 +42,7 @@
           <a class="card-link" (click)="EditRecord(item)">Edit</a>
           <a class="card-link" (click)="RemoveRecord(item.id)">Delete</a>
         </div>
-
+      <!-- Edit -->
         <ng-template #elseBlock>
           <div class="card-body">
             <h5 class="card-title">Edit</h5>
@@ -57,7 +59,7 @@
                 </div>
               </div>
             </div>
-
+          <!-- Submit -->
             <a class="card-link" (click)="item.isEdit = false">Cancel</a>
             <a class="card-link" (click)="UpdateRecord(item)">Update</a>
           </div>
@@ -65,6 +67,4 @@
       </div>
     </div>
   </div>
-
-
 </div> 

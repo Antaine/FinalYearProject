@@ -1,6 +1,6 @@
 <div class="displayTable">
     <div class="displayTableCell">
-  
+    <!-- Register -->
       <div class="authBlock">
         <h3>Register User</h3>
   
@@ -16,13 +16,10 @@
           <input type="button" class="btn btn-block btn-primary" value="Sign Up"
             (click)="ngAuthService.SignUp(userEmail.value, userPwd.value)">
         </div>
-  
-     
       </div>
-  
+      <!-- Log In -->
       <div class="redirectToLogin">
         <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
       </div>
     </div>
-  
   </div>

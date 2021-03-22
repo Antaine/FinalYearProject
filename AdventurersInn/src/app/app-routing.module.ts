@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
-//Import pages to create route
 import { CreateCharacterComponent } from './create-character/create-character.component';
 import { ForumsComponent } from './forums/forums.component';
 import { HomepageComponent } from './homepage/homepage.component';

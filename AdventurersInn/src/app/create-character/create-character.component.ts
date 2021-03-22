@@ -17,15 +17,16 @@ export class CreateCharacterComponent implements OnInit {
   userCharacter: string;
 
   constructor(
-    //CRUD Service Import
+    //Service Imports
     public crudService: FireAuthenticationService,
     private router: Router,
     public ngAuthService: FireAuthenticationService) { }
 
   ngOnInit() {
-    //Initialize
+    //Get User Data
     this.user = this.ngAuthService.userState;
     this.userName = this.ngAuthService.userState.email;
+    //Get firebase Info
     this.crudService.read_Users().subscribe(data => {
       this.users = data.map(e => {
         return {

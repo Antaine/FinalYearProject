@@ -17,8 +17,6 @@ export class ProfileComponent implements OnInit {
   userLevel: number;
   userCharacter: string;
   postContent: string;
-  class
-
   classes = ["Artificer", "Barbarian", "Bard", "Cleric","Druid"];
 
   constructor(public afs:FireAuthenticationService,
@@ -38,8 +36,6 @@ export class ProfileComponent implements OnInit {
         };
       })
     })
-    if(localStorage.getItem('user') !== null){
-      this.email = localStorage.getItem('uEmail');}
   }
 
   //Create Character Method
@@ -73,7 +69,7 @@ export class ProfileComponent implements OnInit {
   RemoveRecord(rowID) {
     this.afs.delete_Character(rowID);
   }
-
+  
   //Update Record
   EditRecord(record) {
     record.isEdit = true;
@@ -81,7 +77,7 @@ export class ProfileComponent implements OnInit {
     record.EditLevel = record.Level;
     record.EditCharacter = record.Character;
   }
-
+  
   //Push Record
   UpdateRecord(recordRow) {
     let record = {};

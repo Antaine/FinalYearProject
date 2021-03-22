@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FireAuthenticationService } from "../services/fire-authentication.service";
 
-
 @Component({
   selector: 'app-sign-up',
   templateUrl: './signup.component.html',
@@ -14,5 +13,4 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

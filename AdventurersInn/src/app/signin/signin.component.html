@@ -1,29 +1,27 @@
 <div class="displayTable">
     <div class="displayTableCell">
-  
+      <!-- Security -->
       <div class="authBlock">
+        <!-- Sign In-->
         <h3>Signin</h3>
         <div class="formGroup">
           <input type="text" class="form-control" placeholder="Username" #userName required>
         </div>
-  
         <div class="formGroup">
           <input type="password" class="form-control" placeholder="Password" #userPassword required>
         </div>
-  
         <div class="formGroup">
           <input type="button" class="btn btn-primary btn-block" value="Sign in"
             (click)="ngAuthService.SignIn(userName.value, userPassword.value)">
         </div>
-  
+        <!-- Password Recovery -->
         <div class="forgotPassword">
           <span routerLink="/forgot-password">Forgot Password?</span>
         </div>
       </div>
-  
+      <!-- Sign Up -->
       <div class="redirectToLogin">
         <span>Not registered yet?<span class="redirect" routerLink="/sign-up"> Register</span></span>
       </div>
-  
     </div>
   </div>
