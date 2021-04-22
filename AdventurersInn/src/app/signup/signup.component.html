@@ -3,17 +3,19 @@
     <!-- Register -->
       <div class="authBlock">
         <h3>Register User</h3>
+
+        <input type="text" class="form-control" style="width: 30rem;" [(ngModel)]="displayName" placeholder="Username">
   
         <div class="formGroup">
-          <input type="email" class="form-control" placeholder="Email Address" #userEmail required>
+          <input type="email" class="form-control" style="width: 30rem;" placeholder="Email Address" #userEmail required>
         </div>
   
         <div class="formGroup">
-          <input type="password" class="form-control" placeholder="Password" #userPwd required>
+          <input type="password" class="form-control" style="width: 30rem;" placeholder="Password" #userPwd required>
         </div>
   
         <div class="formGroup">
-          <input type="button" class="btn btn-block btn-primary" value="Sign Up"
+          <input type="button" class="btn btn-block btn-primary" style="width: 10rem;" value="Sign Up"
             (click)="ngAuthService.SignUp(userEmail.value, userPwd.value)">
         </div>
       </div>

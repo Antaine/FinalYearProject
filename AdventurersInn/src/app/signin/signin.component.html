@@ -5,13 +5,13 @@
         <!-- Sign In-->
         <h3>Signin</h3>
         <div class="formGroup">
-          <input type="text" class="form-control" placeholder="Username" #userName required>
+          <input type="text" class="form-control" style="width: 30rem;" placeholder="Username" #userName required>
         </div>
         <div class="formGroup">
-          <input type="password" class="form-control" placeholder="Password" #userPassword required>
+          <input type="password" class="form-control" style="width: 30rem;" placeholder="Password" #userPassword required>
         </div>
         <div class="formGroup">
-          <input type="button" class="btn btn-primary btn-block" value="Sign in"
+          <input type="button" class="btn btn-primary btn-block" style="width: 10rem;" value="Sign in"
             (click)="ngAuthService.SignIn(userName.value, userPassword.value)">
         </div>
         <!-- Password Recovery -->
