@@ -27,7 +27,7 @@ ngOnInit(): void {
       return {
         id: e.payload.doc.id,
         isEdit: false,
-        Name: e.payload.doc.data()['Username'],
+        Name: e.payload.doc.data()['displayName'],
       };
     })
   });
@@ -36,7 +36,7 @@ ngOnInit(): void {
  //Create Character Method
  async CreateUserName() {
   let record = {};
-  record['Username'] = this.displayName;
+  record['displayName'] = this.displayName;
   
   this.ngAuthService.create_Username(record).then(resp => {
     this.displayName = this.displayName;
