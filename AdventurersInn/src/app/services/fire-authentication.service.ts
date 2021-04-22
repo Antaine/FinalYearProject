@@ -62,9 +62,9 @@ export class FireAuthenticationService {
   //Email Verification
     SendVerificationMail() {
         return this.afAuth.currentUser.then(u => u.sendEmailVerification())
-        .then(() => {
+        /*.then(() => {
           this.router.navigate(['email-verification']);
-        })
+        })*/
     }    
   //Password Recovery
     ForgotPassword(passwordResetEmail) {
@@ -114,6 +114,9 @@ export class FireAuthenticationService {
         this.router.navigate(['sign-in']);
       })
     }  
+
+    //Create Character
+    async create_Username(record) {return this.afs.collection('users').doc(this.userState.uid).update(record);}
 
     
    //Create Character Collection

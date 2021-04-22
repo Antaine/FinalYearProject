@@ -3,8 +3,6 @@
     <!-- Register -->
       <div class="authBlock">
         <h3>Register User</h3>
-
-        <input type="text" class="form-control" style="width: 30rem;" [(ngModel)]="displayName" placeholder="Username">
   
         <div class="formGroup">
           <input type="email" class="form-control" style="width: 30rem;" placeholder="Email Address" #userEmail required>
@@ -16,7 +14,7 @@
   
         <div class="formGroup">
           <input type="button" class="btn btn-block btn-primary" style="width: 10rem;" value="Sign Up"
-            (click)="ngAuthService.SignUp(userEmail.value, userPwd.value)">
+            (click)="ngAuthService.SignUp(userEmail.value, userPwd.value)" routerLink="/username">
         </div>
       </div>
       <!-- Log In -->

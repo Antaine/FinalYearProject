@@ -10,6 +10,8 @@ import { SignInComponent } from './signin/signin.component';
 import { SignUpComponent } from './signup/signup.component';
 import { SocialComponent } from './social/social.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { AuthGuard } from "./auth.guard";
+import { UsernameComponent } from './username/username.component';
 
 //Routes to Navigate to Pages
 const routes: Routes = [
@@ -24,6 +26,7 @@ const routes: Routes = [
   { path: 'messaging', component: MessagingComponent},
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'email-verification', component: VerifyEmailComponent },
+  { path: 'username', component: UsernameComponent},
 ];
 
 @NgModule({
@@ -31,5 +34,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-import { AuthGuard } from "./auth.guard";
+
 

@@ -1,0 +1,17 @@
+<div class="displayTable">
+    <div class="displayTableCell">
+    <!-- Register -->
+      <div class="authBlock">
+        <h3>Register Username</h3>
+
+        <div class="formGroup">
+          <input type="text" class="form-control" style="width: 30rem;" [(ngModel)]="displayName" placeholder="Username">
+        </div> 
+  
+        <div class="formGroup">
+          <input type="button" class="btn btn-block btn-primary" style="width: 10rem;" value="Register"
+         (click)="CreateUserName()" routerLink="/email-verification">
+        </div>
+      </div>
+    </div>
+  </div>
