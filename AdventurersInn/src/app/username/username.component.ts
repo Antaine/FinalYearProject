@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { FireAuthenticationService } from '../services/fire-authentication.service';
 
@@ -16,7 +17,8 @@ user: any;
 constructor(
   //Service Imports
   private router: Router,
-  public ngAuthService: FireAuthenticationService) { }
+  public ngAuthService: FireAuthenticationService,
+  public afs: AngularFirestore) { }
 
 ngOnInit(): void {
   //Get User Data
@@ -37,13 +39,7 @@ ngOnInit(): void {
  async CreateUserName() {
   let record = {};
   record['displayName'] = this.displayName;
-  
-  this.ngAuthService.create_Username(record).then(resp => {
-    this.displayName = this.displayName;
-    console.log(resp);
-  })
-    .catch(error => {
-     console.log(error);
-    });
-}
+  this.ngAuthService.create_Username(record);
+  console.log(record);
+  }
 }
