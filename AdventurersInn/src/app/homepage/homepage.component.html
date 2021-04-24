@@ -5,7 +5,8 @@
         <img class="align-self-start mr-5 img-thumbnail rounded-circle"
           src="{{(user.photoURL) ? user.photoURL : '/assets/dummy.jpg'}}" alt="{{user.displayName}}">
         <div class="media-body">
-          <h2>Hi: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h2>
+          <h2>Hi: <strong>{{( this.ngAuthService.userState.email) ?  this.ngAuthService.userState.email : 'Users'}}</strong></h2>
+         
           <p>User ID: <strong>{{user.uid}}</strong></p>
           <p>Email: <strong>{{user.email}}</strong></p>
         </div>
