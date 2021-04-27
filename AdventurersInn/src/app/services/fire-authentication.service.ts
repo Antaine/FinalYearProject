@@ -6,8 +6,8 @@ import { Router } from "@angular/router";
 //User Object
 export interface User {
     uid: string;
-    email: string;
     displayName: string;
+    email: string;
     photoURL: string;
     emailVerified: boolean;
  }
@@ -32,8 +32,10 @@ export class FireAuthenticationService {
         if (user) {
           this.userState = user;
           localStorage.setItem('user', JSON.stringify(this.userState));
+          JSON.parse(localStorage.getItem('user'));
         } else {
           localStorage.setItem('user', null);
+          JSON.parse(localStorage.getItem('user'));
         }
       })
     }
@@ -44,7 +46,9 @@ export class FireAuthenticationService {
           this.ngZone.run(() => {
             this.router.navigate(['']);
           });
+          console.log(result.user.displayName);
           this.SetUserData(result.user);
+          
         }).catch((error) => {
           window.alert(error.message)
         })
@@ -55,10 +59,33 @@ export class FireAuthenticationService {
         .then((result) => {
           this.SendVerificationMail();
           this.SetUserData(result.user);
+          console.log(result.user.uid);
         }).catch((error) => {
           window.alert(error.message)
         })
     }
+
+    register(email:string, password: string, fullname:string){
+      return new Promise((resolve, reject) => {
+        this.afAuth.createUserWithEmailAndPassword(email, password)
+        .then(userData => {
+          userData.user.updateProfile({
+            displayName: fullname,
+            photoURL: ''
+          }).then(() => {
+            this.SetUserData(userData.user);
+            resolve(userData);
+          }); 
+        },
+        err => reject(err))
+      });
+    }
+
+
+
+
+
+
   //Email Verification
     SendVerificationMail() {
         return this.afAuth.currentUser.then(u => u.sendEmailVerification())
@@ -98,8 +125,8 @@ export class FireAuthenticationService {
       const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
       const userState: User = {
         uid: user.uid,
-        email: user.email,
         displayName: user.displayName,
+        email: user.email,
         photoURL: user.photoURL,
         emailVerified: user.emailVerified
       }
@@ -165,4 +192,6 @@ export class FireAuthenticationService {
   delete_Message(record_id) {this.afs.doc('users/' + this.userState.uid+'/Messaging/'+record_id).delete();}
   //Update Message
   edit_Message(recordID,record){this.afs.collection('users').doc(this.userState.uid).collection("Messaging").doc(recordID).update(record);}
+
+  
 }
