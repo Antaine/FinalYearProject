@@ -1,14 +1,72 @@
-\documentclass{article}
+\documentclass{report}
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
 
-\title{The Adventurer's Inn}
-\author{Colin Roche - G00349215, Antaine O'Conghaile - G00347577}
-\date{\today}
+\newcommand{\projecttitle}{The Adventurer's Inn}
+\newcommand{\projectauthor}{Colin Roche - G00349215, Antaine O'Conghaile - G00347577}
+\newcommand{\projectadvisor}{Mr. Daniel Cregg}
+\newcommand{\projectprogramme}{B.Sc. (Hons) in Software Developement}
+\newcommand{\projectdate}{\today}
 
 \begin{document}
 
-\maketitle
+  \begin{titlepage}
+  \begin{center}
+    \begin{minipage}[t][4cm]{\textwidth}
+      \centering
+        \rule{\linewidth}{0.5mm} \\[0.4cm]
+        { \LARGE \bfseries \projecttitle \\[0.4cm] }
+        \rule{\linewidth}{0.5mm}
+    \end{minipage}
+    
+    \begin{minipage}[c][4cm]{\textwidth}
+      \centering
+        \textbf{\projectauthor}\\[0.4cm]
+        \projectprogramme
+    \end{minipage}
+    
+    \begin{minipage}[c][3cm]{\textwidth}
+      \centering
+        \textbf{Final Year Project}\\[0.2cm]
+        Advised by: \projectadvisor
+    \end{minipage}
+    
+    \begin{minipage}[c][3.5cm]{\textwidth}
+    \centering
+      Department of Computer Science and Applied Physics\\[0.1cm]
+      Galway-Mayo Institute of Technology (GMIT)
+    \end{minipage}
+    
+    \begin{minipage}[b][4cm]{\textwidth}
+      \centering
+        \includegraphics[scale=0.15]{./img/gmitlogo.jpg}
+    \end{minipage}
+    
+    \end{center}
+  \end{titlepage}
+   
+  \setcounter{page}{1}
+\tableofcontents
 
-\section{Introduction}
+\chapter{Abstract}
+\input{abstract.tex}
+
+\chapter{Introduction}
+\input{introduction.tex}
+
+\chapter{Background}
+\input{background.tex}
+
+\chapter{Methodology}
+\input{methodology.tex}
+
+\chapter{Design}
+\input{design.tex}
+
+\chapter{Evaluation}
+\input{evaluation.tex}
+
+\chapter{Conclusion}
+\input{conclusion.tex}
 
 \end{document}
