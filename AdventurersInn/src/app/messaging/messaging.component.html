@@ -1,7 +1,7 @@
 <div class="container">
     <!-- Forum Input-->
       <h2 class="headingtitle">Messaging </h2>
-      <label style="color: #E10000"><h3><b>Welcome {{this.ngAuthService.userState.email}} to the Adventurers Inn</b></h3></label>
+      <label style="color: #E10000"><h3><b>Welcome {{this.ngAuthService.userState.displayName}} to the Adventurers Inn</b></h3></label>
       <form #postMessage="ngForm" (ngSubmit)="CreateMessage(postMessage.value)">
         <div class="formcontainer">
           <label><h3><b></b>Message: </h3></label>

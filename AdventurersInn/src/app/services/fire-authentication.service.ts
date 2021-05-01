@@ -183,11 +183,44 @@ export class FireAuthenticationService {
   edit_Post(recordID,record){this.afs.doc('Forums/' + recordID).update(record);}
 
   //Create Message
-  post_Message(record) {return this.afs.collection('users').doc(this.userState.uid).collection("Messaging").add(record);}
-  post_Message2(record,target) {return this.afs.collection('users').doc(target).collection("Messaging").add(record);}
+  post_Message(record) {
+    record['sender'] = this.userState.uid;
+    let dateTime = new Date()
+    var time = dateTime.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'});;
+    record['createdAt'] = time;
+    var target = record['MessageName'];
+    record['chatId'] = this.userState.uid + target;
+    var chatId = this.userState.uid + target;
+    this.friendUpdateSender(record,target, chatId);
+    this.friendUpdateTarget(record, target, chatId);
+    return this.afs.collection('Messaging').doc(chatId).collection("Messages").add(record);
+    //return this.afs.collection('Messaging').doc(this.userState.uid+).collection("Friends").doc(target).set(data);
+  }
+  friendUpdateSender(record, target, chatId) {
+    const data = {
+      friend: record['MessageName'],
+      message:  record['MessageContent'],
+      createdAt: record['createdAt'],
+      chatId: chatId
+    };
+    
+    return this.afs.collection('users').doc(this.userState.uid).collection("Friends").doc(target).set(data);
+
+  }
+  friendUpdateTarget(record, target, chatId) {
+    const data2 = {
+      friend: this.userState.uid,
+      message:  record['MessageContent'],
+      createdAt: record['createdAt'],
+      chatId: chatId
+    };
+    console.log("2nd Update" + target);
+    
+    return this.afs.collection('users').doc(target).collection("Friends").doc(this.userState.uid).set(data2);
+  }
 
   //Read Posts
-  read_Messages() {return this.afs.collection('users').doc(this.userState.uid).collection("Messaging").snapshotChanges();}
+  read_Messages() {return this.afs.collection('users').doc(this.userState.uid).collection("Friends").snapshotChanges();}
   //Delete Message
   delete_Message(record_id) {this.afs.doc('users/' + this.userState.uid+'/Messaging/'+record_id).delete();}
   //Update Message

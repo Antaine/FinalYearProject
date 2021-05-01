@@ -36,7 +36,7 @@ export class MessagingComponent implements OnInit {
 
   //Create Post Method
   CreateMessage(postData:{postName: string; postContent: string}) {
-    console.log(postData);
+    //console.log(postData);
     let record = {};
     record['MessageName'] = this.messageName;
     record['MessageContent'] = this.messageContent;
@@ -48,14 +48,7 @@ export class MessagingComponent implements OnInit {
     .catch(error => {
       console.log(error);
     });
-    this.crudService.post_Message2(record,this.messageName).then(resp => {
-      this.messageName = "";
-      this.messageContent = "";
-      console.log(resp);
-    })
-      .catch(error => {
-        console.log(error);
-      });
+
   }
 
   //Delete from Database
