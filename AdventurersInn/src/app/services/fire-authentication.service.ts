@@ -2,6 +2,11 @@ import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
+import { Observable } from 'rxjs';
+import {Query} from "@angular/fire/firestore";
+import { query } from '@angular/animations';
+import { snapshotChanges } from '@angular/fire/database';
+
 
 //User Object
 export interface User {
@@ -19,6 +24,7 @@ export interface User {
 export class FireAuthenticationService {
     userState: any;
     public logState: boolean; 
+    friend: any;
 
     constructor(
       //Imports
@@ -46,7 +52,6 @@ export class FireAuthenticationService {
           this.ngZone.run(() => {
             this.router.navigate(['']);
           });
-          console.log(result.user.displayName);
           this.SetUserData(result.user);
           
         }).catch((error) => {
@@ -59,7 +64,6 @@ export class FireAuthenticationService {
         .then((result) => {
           this.SendVerificationMail();
           this.SetUserData(result.user);
-          console.log(result.user.uid);
         }).catch((error) => {
           window.alert(error.message)
         })
@@ -80,11 +84,6 @@ export class FireAuthenticationService {
         err => reject(err))
       });
     }
-
-
-
-
-
 
   //Email Verification
     SendVerificationMail() {
@@ -154,6 +153,9 @@ export class FireAuthenticationService {
   
   //Read Users
   read_Users() {return this.afs.collection('users').snapshotChanges();}
+  read_User(userId) {
+    //console.log(this.afs.collection('users').doc(userId).snapshotChanges())
+    return this.afs.collection('users').doc(userId).snapshotChanges();}
 
   //Read Characters
   read_Characters() {return this.afs.collection('users').doc(this.userState.uid).collection("Characters").snapshotChanges();}
@@ -184,35 +186,46 @@ export class FireAuthenticationService {
 
   //Create Message
   post_Message(record) {
+
+
     record['sender'] = this.userState.uid;
     let dateTime = new Date()
     var time = dateTime.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'});;
     record['createdAt'] = time;
     var target = record['MessageName'];
+    console.log(chatId)
     record['chatId'] = this.userState.uid + target;
     var chatId = this.userState.uid + target;
+
+    //console.log(this.friend.displayName.toString());
     this.friendUpdateSender(record,target, chatId);
     this.friendUpdateTarget(record, target, chatId);
+    record[this.userState.uid] = this.userState.displayName;
+   // record[target] = this.friend.displayName;
+   console.log(chatId);
     return this.afs.collection('Messaging').doc(chatId).collection("Messages").add(record);
     //return this.afs.collection('Messaging').doc(this.userState.uid+).collection("Friends").doc(target).set(data);
   }
+
   friendUpdateSender(record, target, chatId) {
     const data = {
-      friend: record['MessageName'],
+      friendId: record['MessageName'],
       message:  record['MessageContent'],
       createdAt: record['createdAt'],
-      chatId: chatId
+      chatId: chatId,
     };
     
     return this.afs.collection('users').doc(this.userState.uid).collection("Friends").doc(target).set(data);
 
   }
   friendUpdateTarget(record, target, chatId) {
+    
     const data2 = {
-      friend: this.userState.uid,
+      friendId: this.userState.uid,
       message:  record['MessageContent'],
       createdAt: record['createdAt'],
-      chatId: chatId
+      chatId: chatId,
+      friendName: this.userState.displayName,
     };
     console.log("2nd Update" + target);
     
@@ -220,11 +233,14 @@ export class FireAuthenticationService {
   }
 
   //Read Posts
-  read_Messages() {return this.afs.collection('users').doc(this.userState.uid).collection("Friends").snapshotChanges();}
+  read_Messages() 
+  {return this.afs.collection('users').doc(this.userState.uid).collection("Friends").snapshotChanges();}
+  
   //Delete Message
   delete_Message(record_id) {this.afs.doc('users/' + this.userState.uid+'/Messaging/'+record_id).delete();}
   //Update Message
   edit_Message(recordID,record){this.afs.collection('users').doc(this.userState.uid).collection("Messaging").doc(recordID).update(record);}
 
+  getFriend(target) {return this.afs.collection('users').doc(target).snapshotChanges();}
   
 }

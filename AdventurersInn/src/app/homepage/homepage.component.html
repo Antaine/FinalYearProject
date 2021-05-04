@@ -1,19 +1,17 @@
-<div class="container mt-5" style="max-width: 600px">
-<!-- Welcome -->
-    <div class="row" *ngIf="ngAuthService.userState as user">
-      <div class="media">
-        <img class="align-self-start mr-5 img-thumbnail rounded-circle"
-          src="{{(user.photoURL) ? user.photoURL : '/assets/dummy.jpg'}}" alt="{{user.email}}">
-        <div class="media-body">
-          <h2>Hi: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h2>
-          <p>User ID: <strong>{{user.uid}}</strong></p>
-          <p>Email: <strong>{{user.email}}</strong></p>
-        </div>
-      </div>
-    </div>
- 
-    <a class="btn btn-block btn-primary" (click)="ngAuthService.SignOut()">
-      Sign Out
-    </a>
- 
+
+
+<div class="container">
+  <!-- Forum Input-->
+    <h2 class="headingtitle">Forums </h2>
+    <!-- Displays Posts -->
+    <div class="row" style="margin-top: 25px;">
+      <div class="col-md-3">
+        <div class="card" style="width: 18rem;" *ngFor="let item of forums">
+          <div class="card-body" *ngIf="!item.isEdit; else elseBlock">
+            <h5 class="card-title">{{item.PostContent}}</h5><br>
+            <h6 class="card-subtitle mb-2 text-muted">User: {{item.PostName}} </h6>
+            <a class="card-link" (click)="EditPost(item)">Edit</a>
+            <a class="card-link" (click)="RemovePost(item.id)">Delete</a>
+          </div>
 </div>
+

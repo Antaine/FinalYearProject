@@ -1,4 +1,25 @@
+<div class="container mt-5" style="max-width: 600px">
+  <!-- Welcome -->
+      <div class="row" *ngIf="afs.userState as user">
+        <div class="media">
+          <img class="align-self-start mr-5 img-thumbnail rounded-circle"
+            src="{{(user.photoURL) ? user.photoURL : '/assets/dummy.jpg'}}" alt="{{user.email}}">
+          <div class="media-body">
+            <h2>Hi: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h2>
+            <p>User ID: <strong>{{user.uid}}</strong></p>
+            <p>Email: <strong>{{user.email}}</strong></p>
+          </div>
+        </div>
+      </div>
+   
+      <a class="btn btn-block btn-primary" (click)="afs.SignOut()">
+        Sign Out
+      </a>
+   
+  </div>
 <div class="container">
+
+
   <!-- Header-->
   <button (click)="create()" class="btn btn-dark float-center" style="background-color: #E10000">Create Character</button>
   <button (click)="message()" class="btn btn-dark float-center" style="background-color: #E10000">Messaging</button>

@@ -14,9 +14,12 @@ export class MessagingComponent implements OnInit {
   messages: any;
   messageContent: string;
   messageName: string;
+  friendName: string;
 
   //Import Crud Service
-  constructor(public crudService: FireAuthenticationService,
+  constructor(
+    
+    public crudService: FireAuthenticationService,
     public ngAuthService: FireAuthenticationService) { }
 
   ngOnInit(): void {
@@ -27,8 +30,10 @@ export class MessagingComponent implements OnInit {
             return {
               id: e.payload.doc.id,
               isEdit: false,
-              MessageName: e.payload.doc.data()['MessageName'],
-              MessageContent: e.payload.doc.data()['MessageContent'],
+              MessageName: e.payload.doc.data()['friendName'],
+              MessageContent: e.payload.doc.data()['message'],
+              CreatedAt: e.payload.doc.data()['createdAt'],
+              friendId: e.payload.doc.data()['friendId']
             };
           })
         });
@@ -40,6 +45,10 @@ export class MessagingComponent implements OnInit {
     let record = {};
     record['MessageName'] = this.messageName;
     record['MessageContent'] = this.messageContent;
+
+  
+    console.log(this.friendName);
+    //record['friendName'] = this.friendName;
     this.crudService.post_Message(record).then(resp => {
       this.messageName = "";
       this.messageContent = "";

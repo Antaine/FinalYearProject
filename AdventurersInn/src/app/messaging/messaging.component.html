@@ -25,25 +25,12 @@
         <div class="col-md-3">
           <div class="card" style="width: 18rem;" *ngFor="let item of messages">
             <div class="card-body" *ngIf="!item.isEdit; else elseBlock">
-              <h5 class="card-title">{{item.MessageContent}}</h5><br>
-              <h6 class="card-subtitle mb-2 text-muted">User: {{item.MessageName}} </h6>
-              <a class="card-link" (click)="EditMessage(item)">Edit</a>
-              <a class="card-link" (click)="RemoveMessage(item.id)">Delete</a>
+              <h6 class="card-title">{{item.MessageName}} </h6>
+              <h3 class="card-title">{{item.MessageContent}}</h3><br>
+
+              <h6 class="card-subtitle mb-2 text-muted">Sent: {{item.CreatedAt}} </h6>
+
+             <!-- <a class="card-link" (click)="RemoveMessage(item.id)">Delete</a>-->
             </div>
-      <!-- Edit menu-->
-      <ng-template #elseBlock>
-        <div class="card-body">
-          <h5 class="card-title">Edit</h5>
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-12">
-                  <input type="text" class="form-control" [(ngModel)]="item.MessageContent" placeholder="edit name">
-                </div>
-              </div>
-            </div>
-          <!-- Buttons -->
-          <a class="card-link" (click)="item.isEdit = false">Cancel</a>
-          <a  class="card-link" (click)="UpdateMessage(item)">Update</a>
-        </div>
-      </ng-template>
+    </div>
     </div>
