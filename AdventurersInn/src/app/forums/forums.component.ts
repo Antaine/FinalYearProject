@@ -50,7 +50,7 @@ export class ForumsComponent implements OnInit {
     record['PostName'] = this.ngAuthService.userState.displayName;
     record['PostContent'] = this.postContent;
     record['Author'] = this.ngAuthService.userState.uid;
-    record['postId'] = this.ngAuthService.userState.uid +  this.postTitle;;
+    record['postId'] = this.ngAuthService.userState.uid +  this.postTitle;
    // record['PostId'] = this.ngAuthService.userState.uid ;
     this.crudService.post_Forum(record).then(resp => {
       this.postName = "";
@@ -67,7 +67,6 @@ export class ForumsComponent implements OnInit {
       this.crudService.delete_Post(rowID);
     }
     else{
-      console.log(record.Author);
       console.log("Only the author may delete this post");
     }
    

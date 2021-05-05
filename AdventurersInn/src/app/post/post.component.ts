@@ -9,15 +9,15 @@ import { FireAuthenticationService } from "../services/fire-authentication.servi
 })
 export class PostComponent implements OnInit {
   // Variables
-  users: any;
-  userLevel: number;
-  userCharacter: string;
   user: any; 
   comments: any;
   postContent: string;
   postTitle: string;
   postAuthor: string;
   postName: string;
+  commentContent: string;
+  commentAuthor: string;
+  postId: string;
   constructor(public afs: FireAuthenticationService,
     public ngAuthService: FireAuthenticationService) { }
 
@@ -26,27 +26,37 @@ export class PostComponent implements OnInit {
     this.postTitle = post.PostTitle;
     this.postContent = post.PostContent;
     this.postName = post.PostName;
+    this.postAuthor = post.Author;
+    this.postId = post.id;
     console.log(post);
-    this.afs.read_Post(post).subscribe(data => {
+    this.afs.read_Post().subscribe(data => {
       //Fourm Table
       this.comments = data.map(e => {
         return {
           id: e.payload.doc.id,
           isEdit: false,
-          PostId: e.payload.doc.data()['PostName'],
-          PostContent: e.payload.doc.data()['PostContent'],
-          Author: e.payload.doc.data()['Author'],
+          
+          CommentContent: e.payload.doc.data()['commentContent'],
+          CommentId: e.payload.doc.data()['commentAuthorId'],
+          CommentName: e.payload.doc.data()['commentAuthor'],
+          CreatedAt: e.payload.doc.data()['createdAt'],
         };
+        
       })
+      
     });
   }
- /* //Create Post Method
-  CreatePost(postData:{postName: string; postContent: string; author: string}) {
+  //Create Post Method
+  CreateComment(recordContent) {
     let record = {};
-    record['PostName'] = this.ngAuthService.userState.displayName;
-    record['PostContent'] = this.postContent;
-    record['Author'] = this.ngAuthService.userState.uid;
-    this.crudService.post_Forum(record).then(resp => {
+    console.log('Entered create')
+    record['commentContent'] = recordContent['postContent'];
+    record['target'] = this.postAuthor + this.postId;
+    record['commentAuthor'] = this.ngAuthService.userState.displayName;
+    record['commentAuthorId'] = this.ngAuthService.userState.uid;
+    record['createdAt']=new Date().toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'});
+    console.log(record.toString());
+    this.afs.postComment(record).then(resp => {
       this.postName = "";
       this.postContent = "";
     })
@@ -55,7 +65,7 @@ export class PostComponent implements OnInit {
       });
   }
 
-  //Delete from Database
+ /* //Delete from Database
   RemovePost(rowID) {
     this.crudService.delete_Post(rowID);
   }

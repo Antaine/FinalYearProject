@@ -5,8 +5,8 @@
         <div class="col-md-3">
           <div class="card" style="width: 80rem;" >
             <div class="card-body">
-                <h5 class="card-title">Title: {{postTitle}}</h5><br>
-                <h5 class="card-title">Content: {{postContent}}</h5><br>
+                <h2 class="card-title">Title: {{postTitle}}</h2><br>
+                <h4 class="card-title">Content: {{postContent}}</h4><br>
                 <h6 class="card-title">by: {{postName}}</h6><br>
            <!--   <a class="card-link" (click)="EditPost(item)">Edit</a>
               <a class="card-link" (click)="RemovePost(item.id)">Delete</a>--> 
@@ -28,4 +28,25 @@
         </div>
       </ng-template>
   </div>
+</div>
+<div class="container">
+
+<div class="card" style="width: 18rem;" *ngFor="let item of comments">
+    <div class="card-body" *ngIf="!item.isEdit; else elseBlock">
+      <h5 class="card-link">{{item.CommentContent}}</h5><br>
+      <h5 class="card-link">{{item.CommentName}}</h5><br>
+      <h5 class="card-link">{{item.CreatedAt}}</h5><br>
+      <a class="card-link" (click)="EditPost(item)">Edit</a>
+     <a class="card-link" (click)="RemovePost(item,item.id)">Delete</a>
+  </div>
+</div>
+<div class="container">
+    <!-- Forum Input-->
+      <h2 class="headingtitle">Reply </h2>
+      <form #postForm="ngForm" (ngSubmit)="CreateComment(postForm.value)">
+        <div class="formcontainer">
+            <textarea id="content" class="contenttextarea" name = "postContent"  [(ngModel)]="commentContent" ngModel required></textarea><br>
+            <button type="submit" class="postbutton btn btn-dark"  style="background-color: #E10000">Send Post</button>
+        </div>
+      </form>
 </div>

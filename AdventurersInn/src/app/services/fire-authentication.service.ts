@@ -174,14 +174,22 @@ export class FireAuthenticationService {
 
   //Create Post
   post_Forum(record) {
-    console.log(this.userState.uid);
-    console.log(this.userState.uid);
     return this.afs.collection('Forums').doc(this.userState.uid+record['PostTitle']).set(record);}
+
+  //Create Post
+  postComment(record) {
+    var post = JSON.parse(localStorage.getItem('postState'));
+    var postId = post.id;
+    console.log(record);
+    return this.afs.collection('Forums').doc(postId).collection('Comments').add(record);}
   //Read Posts
   read_Forums() {return this.afs.collection('Forums').snapshotChanges();}
 
   //Read Posts
-  read_Post(record) {return this.afs.collection('Forums').doc(record['PostId']).collection("Comments").snapshotChanges();}
+  read_Post() {
+    var post = JSON.parse(localStorage.getItem('postState'));
+    var postId = post.id;
+    return this.afs.collection('Forums').doc(post.id).collection("Comments").snapshotChanges();}
 
   //Delete Post
   delete_Post(record_id) {this.afs.doc('Forums/' + record_id).delete();}
@@ -193,7 +201,7 @@ export class FireAuthenticationService {
   post_Message(record) {
     record['sender'] = this.userState.uid;
     let dateTime = new Date()
-    var time = dateTime.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'});;
+    var time = dateTime.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'});
     record['createdAt'] = time;
     var target = record['MessageName'];
     console.log(chatId)
