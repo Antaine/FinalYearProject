@@ -52,6 +52,7 @@ As well we are reviwing our work and updating our plan accordingly as well as be
 
 Week 2 - 
 I updated our documentation after adjusting our work schedule for the second semester. - A
+Both moved houses in Jauary  -A&C  
 Colin starded the dissertation by dividing it into sections - C  
       
 Week 3 -  
@@ -64,5 +65,41 @@ Displays characters on profile page.  -C
 Added navigation between forums,Social & profile component -C  
   
 Week 4 -  
+Fixed a CRRUD error occcuring on the forums component. -A  
+Fixed an error with character editing. - A
+My profile redirects he not signed in - C
+  
+Week 5 -
+Code cleaning and styling -C  
+Fixed an error on profile not showing characters and improved character display -A  
+  
+Week 6 -
+Added basic messaging - A  
+Added security, Improved logiin, verification and password revcovery - A  
+Cleaned code -A  
+Fixed logIn display on navbar -A
+
+Week 7 -  
+Tied up with other work and illness  - A
+  
+Week 8 -  
+Fixing format of spec.ts files for signin and signup -C
+Designing database layout for messaging and forums -A  
+
+Week 9 -  
+Adjusted width of object displays  -C
+Adding username attempted - C  
+Adding username fixed -C  
+Fixed bug of username not displaying  -A
+Improved the storage of user data in databse -A
+
+Week 10 -  
+Added ovrleaf files to github -C  
+Improved message storage and creation  -A
+Forums create seperate child pages -A  
+Added a comment sysytem to the posts  -A
+
+
+
 
 
