@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { CrudService } from '../services/crudservice';
 import { FireAuthenticationService } from "../services/fire-authentication.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forums',
@@ -16,10 +17,13 @@ export class ForumsComponent implements OnInit {
   forums: any;
   postContent: string;
   postName: string;
+  postTitle: string;
+  postId: string;
 
   //Import Crud Service
   constructor(public crudService: FireAuthenticationService,
-    public ngAuthService: FireAuthenticationService) { }
+    public ngAuthService: FireAuthenticationService,
+    private router: Router) { }
 
   ngOnInit(): void {
     //Initialize
@@ -30,18 +34,24 @@ export class ForumsComponent implements OnInit {
             return {
               id: e.payload.doc.id,
               isEdit: false,
+              PostTitle: e.payload.doc.data()['PostTitle'],
               PostName: e.payload.doc.data()['PostName'],
               PostContent: e.payload.doc.data()['PostContent'],
+              Author: e.payload.doc.data()['Author'],
             };
           })
         });
   }
 
   //Create Post Method
-  CreatePost(postData:{postName: string; postContent: string}) {
+  CreatePost(postData:{postTitle: string;postName: string; postContent: string; author: string}) {
     let record = {};
-    record['PostName'] = this.ngAuthService.userState.email;
+    record['PostTitle'] = this.postTitle;
+    record['PostName'] = this.ngAuthService.userState.displayName;
     record['PostContent'] = this.postContent;
+    record['Author'] = this.ngAuthService.userState.uid;
+    record['postId'] = this.ngAuthService.userState.uid +  this.postTitle;;
+   // record['PostId'] = this.ngAuthService.userState.uid ;
     this.crudService.post_Forum(record).then(resp => {
       this.postName = "";
       this.postContent = "";
@@ -52,15 +62,28 @@ export class ForumsComponent implements OnInit {
   }
 
   //Delete from Database
-  RemovePost(rowID) {
-    this.crudService.delete_Post(rowID);
+  RemovePost(record,rowID) {
+    if(record.Author == this.ngAuthService.userState.uid){
+      this.crudService.delete_Post(rowID);
+    }
+    else{
+      console.log(record.Author);
+      console.log("Only the author may delete this post");
+    }
+   
   }
   
   //Update Record
   EditPost(record) {
-    record.isEdit = true;
-    record.EditPost = record.PostContent;
-    record.EditName = record.PostName;
+    if(record.Author == this.ngAuthService.userState.uid){
+      record.isEdit = true;
+      record.EditPost = record.PostContent;
+      record.EditName = record.PostName;
+    }
+    else{
+      console.log("Only the author may edit this post");
+    }
+
   }
 
   //Push Record
@@ -70,6 +93,13 @@ export class ForumsComponent implements OnInit {
     record['PostName'] = recordRow.PostName;
     this.crudService.edit_Post(recordRow.id, record);
     recordRow.isEdit = false;
+  }
+
+  GetPost(post){
+    console.log("Entered");
+    localStorage.setItem('postState', JSON.stringify(post));
+    console.log(post);
+    this.router.navigate(['/post'])
   }
 
 }

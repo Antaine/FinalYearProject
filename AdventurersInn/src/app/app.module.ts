@@ -21,6 +21,7 @@ import { MessagingComponent } from './messaging/messaging.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { FireAuthenticationService } from "./services/fire-authentication.service";
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FireAuthenticationService } from "./services/fire-authentication.servic
     MessagingComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,

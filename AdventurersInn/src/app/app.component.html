@@ -11,20 +11,20 @@
               <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
           </li>
           <li class="nav-item">
-            
+            <a class="nav-link" routerLink="/messaging" routerLinkActive="active">Messages</a>
         </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/forum" routerLinkActive="active">Forums</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/social" routerLinkActive="active">Groups</a>
-          </li>
+
           <li>
             <input type="text"  placeholder="Search...">
           </li>
           
       </ul>
       <ul class="navbar-nav">
+        <a class="nav-link" routerLink="/social" routerLinkActive="active">Groups</a>
+
           <a class="nav-link" routerLink="/profile" routerLinkActive="active">My Profile</a>
           <a class="nav-link" routerLink="/sign-in"  *ngIf="!fireService.isLoggedIn" routerLinkActive="active">Sign-In</a>
           <a class="nav-link" routerLink="/sign-up"  *ngIf="!fireService.isLoggedIn" routerLinkActive="active">Sign Up</a>
