@@ -44,7 +44,25 @@ Basic forum -A
 Week 8 -  
 Updated firebase security to only allow updates if user is logged in - A
 
-Semester 2 -
+Semester 2 -  
 
-Week 1 - Colin and I have moved to Galway. Whilw this has slowed down progress on the project we expect that we will catch up on the work duw to faster internet and being in the same house - A  
+Week 1 - 
+Colin and I have moved to Galway. Whilw this has slowed down progress on the project we expect that we will catch up on the work duw to faster internet and being in the same house - A  
 As well we are reviwing our work and updating our plan accordingly as well as begining the dissertation. - A
+
+Week 2 - 
+I updated our documentation after adjusting our work schedule for the second semester. - A
+Colin starded the dissertation by dividing it into sections - C  
+      
+Week 3 -  
+Added a welcome object displaying the users information.  -A  
+Added automatic identification to posts & Characters. -A  
+Updated the services and firebase to create a table with users email as the id.  -A  
+Updated the database to store  a users charactere inside a collection inside a users documment.  -A  
+Displays only relevant onformation on homepage  -A  
+Displays characters on profile page.  -C
+Added navigation between forums,Social & profile component -C  
+  
+Week 4 -  
+
+
