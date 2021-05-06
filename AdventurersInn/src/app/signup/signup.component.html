@@ -1,29 +1,31 @@
-<div class="displayTable">
-    <div class="displayTableCell">
-    <!-- Register -->
-      <div class="authBlock">
-        <h3>Register User</h3>
-  
-        <div class="formGroup">
-          <input type="email" class="form-control" style="width: 30rem;" placeholder="Email Address" #userEmail required>
-        </div>
-  
-        <div class="formGroup">
-          <input type="password" class="form-control" style="width: 30rem;" placeholder="Password" #userPwd required>
-        </div>
-
-        <div class="formGroup">
-          <input type="displayName" class="form-control" style="width: 30rem;" placeholder="Username" #userDisplayName required>
-        </div>
-  
-        <div class="formGroup">
-          <input type="button" class="btn btn-block btn-primary" style="width: 10rem;" value="Sign Up"
-            (click)="ngAuthService.register(userEmail.value, userPwd.value, userDisplayName.value)" routerLink="/home">
-        </div>
+<div class="row pt-5" style="color: black">
+  <div class="col-md-5 mx-auto">
+    <div class="card rounded-1">
+      <div class="card-header">
+          <!-- Register -->
+          <h3 class="mb-0">Register User</h3>
       </div>
-      <!-- Log In -->
-      <div class="redirectToLogin">
-        <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
+      <div class="card-body">
+        <label>Email Address:</label>
+        <!--Input for Email -->
+        <input type="email" class="form-control rounded-1" style="width: 30rem;" placeholder="Email" #userEmail required/>
+        <p></p>
+        <label>User Password:</label>
+        <!--Input for Password -->
+        <input type="password" class="form-control rounded-1" style="width: 30rem;" placeholder="Password" #userPwd required/>
+        <p></p>
+        <label>Username:</label>
+        <!--Input for Password -->
+        <input type="displayName" class="form-control rounded-1" style="width: 30rem;" placeholder="Username" #userDisplayName required/>
+        <p></p>
+        <!-- Submit Button -->
+        <input type="button" class="btn btn-dark float-right" style="width: 10rem;" value="Sign Up"
+          (click)="ngAuthService.register(userEmail.value, userPwd.value, userDisplayName.value)" routerLink="/home" style="background-color: #E10000">
+        <!-- Log In -->
+        <div class="redirectToLogin">
+          <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
+        </div>
       </div>
     </div>
   </div>
+</div>

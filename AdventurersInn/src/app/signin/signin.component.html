@@ -1,27 +1,31 @@
-<div class="displayTable">
-    <div class="displayTableCell">
-      <!-- Security -->
-      <div class="authBlock">
-        <!-- Sign In-->
-        <h3>Signin</h3>
-        <div class="formGroup">
-          <input type="text" class="form-control" style="width: 30rem;" placeholder="Username" #userName required>
-        </div>
-        <div class="formGroup">
-          <input type="password" class="form-control" style="width: 30rem;" placeholder="Password" #userPassword required>
-        </div>
-        <div class="formGroup">
-          <input type="button" class="btn btn-primary btn-block" style="width: 10rem;" value="Sign in"
-            (click)="ngAuthService.SignIn(userName.value, userPassword.value)">
-        </div>
+<div class="row pt-5" style="color: black">
+  <div class="col-md-5 mx-auto">
+    <div class="card rounded-1">
+      <div class="card-header">
+          <!-- Sign In Input -->
+          <h3 class="mb-0">Sign In</h3>
+      </div>
+      <div class="card-body">
+        <label>Email Address:</label>
+        <!--Input for Email -->
+        <input type="email" class="form-control rounded-1" style="width: 30rem;" placeholder="Email" #userEmail required/>
+        <p></p>
+        <label>User Password:</label>
+        <!--Input for Password -->
+        <input type="password" class="form-control rounded-1" style="width: 30rem;" placeholder="Password" #userPassword required/>
+        <p></p>
+        <!-- Submit Button -->
+        <input type="button" class="btn btn-dark float-right" style="width: 10rem;" value="Sign in"
+          (click)="ngAuthService.SignIn(userEmail.value, userPassword.value)" style="background-color: #E10000">
         <!-- Password Recovery -->
         <div class="forgotPassword">
           <span routerLink="/forgot-password">Forgot Password?</span>
         </div>
-      </div>
-      <!-- Sign Up -->
-      <div class="redirectToLogin">
-        <span>Not registered yet?<span class="redirect" routerLink="/sign-up"> Register</span></span>
+        <!-- Sign Up -->
+        <div class="redirectToLogin">
+          <span>Not registered yet?<span class="redirect" routerLink="/sign-up"> Register</span></span>
+        </div>
       </div>
     </div>
   </div>
+</div>
