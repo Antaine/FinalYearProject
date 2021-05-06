@@ -10,11 +10,19 @@ import { FireAuthenticationService } from "../services/fire-authentication.servi
 })
 export class CreateCharacterComponent implements OnInit {
   //Variables
+  levels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'];
+  races = ['Dragonborn', 'Dwarf', 'Elf', 'Gnome', 'Half-Elf', 'Half-Orc', 'Halfling', 'Human', 'Tiefling'];
+  classes = ['Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin', 'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard'];
+  backgrounds = ['Acolyte', 'Criminal', 'Entertainer', 'Folk Hero', 'Hermit', 'Noble', 'Outlander', 'Sailor', 'Soldier', 'Urchin'];
+
   users: any;
   userName: string;
   user: any; 
-  userLevel: number;
   userCharacter: string;
+  userLevel: string = 'Level 1';
+  userRace: string;
+  userClass: string;
+  userBackground: string;
 
   constructor(
     //Service Imports
@@ -32,9 +40,12 @@ export class CreateCharacterComponent implements OnInit {
         return {
           id: e.payload.doc.id,
           isEdit: false,
-          Name: e.payload.doc.data()['Name'],
-          Level: e.payload.doc.data()['Level'],
-          Character: e.payload.doc.data()['Character'],
+          Name: e.payload.doc.data()['name'],
+          Level: e.payload.doc.data()['level'],
+          Character: e.payload.doc.data()['character'],
+          Race: e.payload.doc.data()['race'],
+          Class: e.payload.doc.data()['class'],
+          Background: e.payload.doc.data()['background'],
         };
       })
     });
@@ -48,14 +59,20 @@ export class CreateCharacterComponent implements OnInit {
   //Create Character Method
   CreateRecord() {
     let record = {};
-    record['Name'] = this.userName;
-    record['Level'] = this.userLevel;
-    record['Character'] = this.userCharacter;
+    record['name'] = this.userName;
+    record['level'] = this.userLevel;
+    record['character'] = this.userCharacter;
+    record['race'] = this.userRace;
+    record['class'] = this.userClass;
+    record['background'] = this.userBackground;
     
     this.crudService.create_NewCharacter(record).then(resp => {
       this.userName = this.userName;
       this.userLevel = undefined;
       this.userCharacter = "";
+      this.userRace = "";
+      this.userClass = "";
+      this.userBackground = "";
       console.log(resp);
       this.router.navigate(['/profile'])
     })
