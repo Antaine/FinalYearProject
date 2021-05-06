@@ -1,18 +1,43 @@
-<div class="container">
+<div class="container row pt-5" style="color: black">
+  <div class="col-md-6 mx-auto">
     <!-- Forum Input-->
-      <h2 class="headingtitle">Forums </h2>
-      <label style="color: #E10000"><h3><b>Welcome {{this.ngAuthService.userState.email}} to the Adventurers Inn</b></h3></label>
-      <form #postForm="ngForm" (ngSubmit)="CreatePost(postForm.value)">
-        <div class="formcontainer">
-          <label><h3><b></b>Post: </h3></label>
-          <div>
-            <textarea id="postTitle" class="contenttextarea" name = "postTitle"  [(ngModel)]="postTitle" ngModel required></textarea><br>
-            <textarea id="content" class="contenttextarea" name = "postContent"  [(ngModel)]="postContent" ngModel required></textarea><br>
-            <button type="submit" class="postbutton btn btn-dark"  style="background-color: #E10000">Send Post</button>
+    <h2 class="headingtitle">Forums </h2>
+    <label style="color: #E10000"><h3><b>Welcome {{this.ngAuthService.userState.displayName}} to the Adventurers Inn</b></h3></label>
+  </div>
+</div>
+
+<form #postForm="ngForm" (ngSubmit)="CreatePost(postForm.value)">
+  <div class="row pt-5" style="color: black">
+    <div class="col-md-9 mx-auto">
+      <div class="col-md-6 ml-5">
+        <div class="col-md-0 ml-2">
+          <div class="card rounded-1">
+            <div class="card-header">
+              <!-- Post-->
+              <h3 class="mb-0">Post: </h3>
+            </div>
+            <div class="card-body">
+              <div>
+                <label>Title:</label>
+              </div>
+              <!-- Input Title -->
+              <textarea id="postTitle" class="contenttextarea" name = "postTitle"  [(ngModel)]="postTitle" ngModel required></textarea><br>
+              <p></p>
+              <div>
+              <label>Content:</label>
+              <!-- Input Content -->
+            </div>
+              <textarea id="content" class="contenttextarea" name = "postContent"  [(ngModel)]="postContent" ngModel required></textarea><br>
+              <p></p>
+              <button type="submit" class="postbutton btn btn-dark float-right"  style="background-color: #E10000">Send Post</button>
+            </div>
           </div>
         </div>
-      </form>
-</div>
+      </div>
+    </div>
+  </div>
+</form>
+
 <div class="container">
       <!-- Displays Posts -->
       <div class="row" style="margin-top: 25px;">
