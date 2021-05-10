@@ -96,11 +96,11 @@ export class ProfileComponent implements OnInit {
   //Push Record
   UpdateRecord(recordRow) {
     let record = {};
-    record['Character'] = recordRow.EditCharacter;
-    record['Level'] = recordRow.EditLevel;
-    record['Race'] = recordRow.EditRace;
-    record['Background'] = recordRow.EditBackground;
-    record['Class'] = recordRow.EditClass;
+    record['character'] = recordRow.EditCharacter;
+    record['level'] = recordRow.EditLevel;
+    record['race'] = recordRow.EditRace;
+    record['background'] = recordRow.EditBackground;
+    record['class'] = recordRow.EditClass;
     this.afs.update_Character(recordRow.id, record);
     recordRow.isEdit = false;
   }
