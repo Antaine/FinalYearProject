@@ -6,44 +6,10 @@
   </div>
 </div>
 
-<form #postMessage="ngForm" (ngSubmit)="CreateMessage(postMessage.value)">
-  <div class="row pt-5" style="color: black">
-    <div class="col-md-9 mx-auto">
-      <div class="col-md-6 ml-5">
-        <div class="col-md-0 ml-2">
-          <div class="card rounded-1">
-            <div class="card-header">
-              <!-- Post-->
-              <h3 class="mb-0">Friend: </h3>
-            </div>
-            <div class="card-body">
-              <div>
-                <label>Input User Id:</label>
-              </div>
-              <!-- usern -->
-              <input type="text" class="userinput" name = "friendId"  [(ngModel)]="friendId" ngModel required/><br>
-              <p></p>
-              <div>
-              <label>Say Hello to your Friend:</label>
-              <!-- Input Content -->
-            </div>
-              <textarea id="content" class="contenttextarea" name = "postContent"  [(ngModel)]="messageContent" ngModel required></textarea><br>
-              <p></p>
-              <button type="submit" class="postbutton btn btn-dark float-right"  style="background-color: #E10000">Send Message</button>
-              <button class="fetchbutton btn btn-dark"  style="background-color: #E10000">Fetch Message</button> |
-            <button class="clearbutton btn btn-dark"  style="background-color: #E10000">Clear Message</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</form>
-    
 <!-- Displays Message -->
-<div class="row" style="margin-top: 25px;">
-  <div class="col-md-3">
-    <div class="card" style="width: 18rem;" *ngFor="let item of messages">
+<div class="row pt-4 float-right" style="margin-top: 25px;">
+  <div class="col-md-3 mr-5">
+    <div class="card" style="width: 25rem;" *ngFor="let item of messages">
       <div class="card-body" *ngIf="!item.isEdit; else elseBlock">
         <h3 class="card-link" (click)= "GetChat(item)">{{item.friendName}} </h3>
         <h3 class="card-link" (click)= "GetChat(item)">{{item.MessageContent}}</h3><br>
@@ -55,3 +21,34 @@
     </div>
   </div>
 </div>
+
+<form #postMessage="ngForm" (ngSubmit)="CreateMessage(postMessage.value)">
+  <div class="row p-5" style="color: black">
+    <div class="col-md-15 mx-auto" style="width: 680px;">
+          <div class="card rounded-1">
+            <div class="card-header">
+              <!-- Post-->
+              <h3 class="mb-0">Friend: </h3>
+            </div>
+            <div class="card-body ">
+              <div>
+                <label>Input User Id:</label>
+              </div>
+              <!-- usern -->
+              <input type="text" class="userinput" style="width: 200px;" name = "friendId"  [(ngModel)]="friendId" ngModel required/><br>
+              <p></p>
+              <div>
+              <label>Say Hello to your Friend:</label>
+              <!-- Input Content -->
+            </div>
+              <textarea id="content" class="contenttextarea" style="width: 400px; height: 100px;" name = "postContent"  [(ngModel)]="messageContent" ngModel required></textarea><br>
+              <p></p>
+              <button type="submit" class="postbutton btn btn-dark float-right"  style="background-color: #E10000">Send Message</button>
+              <button class="fetchbutton btn btn-dark"  style="background-color: #E10000">Fetch Message</button> |
+            <button class="clearbutton btn btn-dark"  style="background-color: #E10000">Clear Message</button>
+            </div>
+          </div>
+    </div>
+  </div>
+</form>
+    

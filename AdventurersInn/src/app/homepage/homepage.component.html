@@ -6,12 +6,12 @@
     <!-- Displays Posts -->
     <div class="row" style="margin-top: 25px;">
       <div class="col-md-3">
-        <div class="card" style="width: 18rem;" *ngFor="let item of forums">
+        <div class="card" style="width: 50rem;" *ngFor="let item of forums">
           <div class="card-body" *ngIf="!item.isEdit; else elseBlock">
             <h5 class="card-title">{{item.PostContent}}</h5><br>
             <h6 class="card-subtitle mb-2 text-muted">User: {{item.PostName}} </h6>
-            <a class="card-link" (click)="EditPost(item)">Edit</a>
-            <a class="card-link" (click)="RemovePost(item.id)">Delete</a>
+            <a class="card-link float-right" (click)="RemovePost(item.id)">Delete</a>
+            <a class="card-link mr-3 float-right" (click)="EditPost(item)">Edit</a>
           </div>
 </div>
 

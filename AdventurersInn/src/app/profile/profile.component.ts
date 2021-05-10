@@ -16,8 +16,10 @@ export class ProfileComponent implements OnInit {
   userName: string;
   userLevel: number;
   userCharacter: string;
+  userRace: string;
+  userBackground: string;
+  userClass: string;
   postContent: string;
-  classes = ["Artificer", "Barbarian", "Bard", "Cleric","Druid"];
 
   constructor(public afs:FireAuthenticationService,
     private router: Router) { }
@@ -30,9 +32,13 @@ export class ProfileComponent implements OnInit {
         return {
           id: e.payload.doc.id,
           isEdit: false,
-          Name: e.payload.doc.data()['Name'],
-          Level: e.payload.doc.data()['Level'],
-          Character: e.payload.doc.data()['Character'],
+          Name: e.payload.doc.data()['name'],
+          Level: e.payload.doc.data()['level'],
+          Character: e.payload.doc.data()['character'],
+          Race: e.payload.doc.data()['race'],
+          Background: e.payload.doc.data()['background'],
+          Class: e.payload.doc.data()['class'],
+
         };
       })
     })
@@ -44,11 +50,17 @@ export class ProfileComponent implements OnInit {
     record['Name'] = this.userName;
     record['Level'] = this.userLevel;
     record['Character'] = this.userCharacter;
+    record['Race'] = this.userRace;
+    record['Background'] = this.userBackground;
+    record['Class'] = this.userClass;
     
     this.afs.create_NewCharacter(record).then(resp => {
       this.userName = this.userName;
       this.userLevel = undefined;
       this.userCharacter = "";
+      this.userRace = "";
+      this.userBackground = "";
+      this.userClass = "";
       console.log(resp);
       this.router.navigate(['/profile'])
     })
@@ -76,6 +88,9 @@ export class ProfileComponent implements OnInit {
     record.EditName = record.Name;
     record.EditLevel = record.Level;
     record.EditCharacter = record.Character;
+    record.EditRace = record.Race;
+    record.EditBackground = record.Background;
+    record.EditClass = record.Class;
   }
   
   //Push Record
@@ -83,6 +98,9 @@ export class ProfileComponent implements OnInit {
     let record = {};
     record['Character'] = recordRow.EditCharacter;
     record['Level'] = recordRow.EditLevel;
+    record['Race'] = recordRow.EditRace;
+    record['Background'] = recordRow.EditBackground;
+    record['Class'] = recordRow.EditClass;
     this.afs.update_Character(recordRow.id, record);
     recordRow.isEdit = false;
   }

@@ -27,40 +27,21 @@
 
 <div class="card rounded-0">
   <div class="card-header">
-    <h3 class="mb-0">Create Your Own Character</h3>
-  </div>
-<!-- End of Header-->
-  <div class="card-body">
-    <p></p>
-    <!-- Submit Button -->
-    <button type="button" (click)="CreateRecord()" [disabled]="!userName || !userLevel || !userCharacter" 
-      class="btn btn-dark float-right" style="background-color: #E10000">Create</button>
-  <div class="row" style="margin-top: 25px;">
-
-    <div class="col-md-3">
-      <input type="text" class="form-control" [(ngModel)]="postContent" placeholder="Character">
-      <!-- Add Ng for to add options to select-->
-      <select>
-        <option ng-repeat="class in classes"class="form-control" style="width: 10rem;" [(ngModel)]="postContent" placeholder="">{{classes}}</option>
-      </select>
-    </div>
-    
-    <div class="col-md-3">
-      <select>
-         <option ng-repeat="level in levels" placeholder="3"></option> 
-      </select>*
-    </div>
+    <h3 class="mb-0">Display Player Characters</h3>
   </div>
 
-  <div class="row" style="margin-top: 25px;">
-    <div class="col-md-3">
-      <div class="card" style="width: 18rem;" *ngFor="let item of characters">
+  <div class="row p-5" style="margin-top: 25px;">
+    <div class="col-md-3 ml-5">
+      <div class="card" style="width: 50rem;" *ngFor="let item of characters">
         <div class="card-body" *ngIf="!item.isEdit; else elseBlock">
           <h5 class="card-title">{{item.Name}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">Level: {{item.Level}} Level</h6>
           <p class="card-text">Character: {{item.Character}}</p>
-          <a class="card-link" (click)="EditRecord(item)">Edit</a>
-          <a class="card-link" (click)="RemoveRecord(item.id)">Delete</a>
+          <p class="card-text">Race: {{item.Race}}</p>
+          <p class="card-text">Background: {{item.Background}}</p>
+          <p class="card-text">Class: {{item.Class}}</p>
+          <a class="card-link float-right" (click)="RemoveRecord(item.id)">Delete</a>
+          <a class="card-link mr-3 float-right" (click)="EditRecord(item)">Edit</a>
         </div>
       <!-- Edit -->
         <ng-template #elseBlock>
@@ -80,8 +61,8 @@
               </div>
             </div>
           <!-- Submit -->
-            <a class="card-link" (click)="item.isEdit = false">Cancel</a>
-            <a class="card-link" (click)="UpdateRecord(item)">Update</a>
+          <a class="card-link float-right" (click)="UpdateRecord(item)">Update</a>
+            <a class="card-link mr-3 float-right" (click)="item.isEdit = false">Cancel</a>
           </div>
         </ng-template>
       </div>
