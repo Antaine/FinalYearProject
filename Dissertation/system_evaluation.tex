@@ -1,0 +1,96 @@
+\section{Initial Plan}
+The initial plan for the project was to make a social media platform with a target audience of players Table-Top Role-playing Game (TTRPG's) players community in which they could store and share information about their ideas, characters campaigns that they were part of. The web application should allow the users the communicate privately with a simple messaging system, The project should allow users to create forums for users to share ideas, discuss relevant topics as well as aiding the users in finding other users for both their in person and remote sessions\\\\
+After researching different TTRPG's we decided that we would focus on Dungeons \& Dragons (D\&D) in particular as it has one of the biggest consumer bases and is often the entry point for players. We found while their were many small tools that would give the user information about the rules and aided a user in character creation such as Orc-Pub. Despite this we found there was no application or platform for discussing and sharing ideas while allowing users to easily manage their sessions and characters.
+
+\subsection{Goal of the Application}
+The general Goal of the application was establish and environment that the players of this popular franchise could use this as a communication tools between parties or individual users and a way to store, access and edit relevant information needed to share with other members of their group.  More precisely the objectives of the application can be described as follows:
+
+\begin{itemize}
+    \item Evaluate and establish the requirements of the user with regard to messaging.
+    \item Evaluate and establish the requirements of the user with regard to sharing of campaign overview information.
+    \item Evaluate the current tools available for character creation and establish the relevant information that is needed.
+    \item Limitation of the Application.
+    \item Authentication and Security.
+    \item User Experience.
+    \item Evaluation of the Technologies Used.
+\end{itemize}
+
+\section{Evaluation of Objectives}
+The following section outlines how the objects described in the "General Goal of the Application" section where implemented and completed in the system.
+
+\subsection{Evaluate and establish the requirements of the user with regard to messaging.}
+\subsubsection{Private Messaging}
+With any communication system, the user must have the user must have the ability to privately message other individual users of the application.  To accomplish this users must be able to search for other users in the application, message them and then be able to view previous messages between the two.
+
+\subsubsection{Group Messaging}
+During the research of Table-Top RPGs, players are part of an individual parties, each party is comprised of a certain amount of players that participate as a character in a campaign.  In each campaign there is a Dungeon Master(DM) which, for the use of the application acts as administrator for the participant of the campaign.  The DMs must have a facility for message all members of the campaign with relevant information and also have the required information of player's characters.  With this in mind, a group messaging system which allows these features was vitally important for the application.
+
+\subsection{Evaluate and establish the requirements of the user with regard to sharing of campaign overview information.}
+After establishing what is required for each individual campaign, it became clear that users would benefit from being able to find out about ongoing campaigns that they might have an interest in.
+
+\subsubsection{Forums}
+The way this was established in the application was have a forums page in which user could make general post conveying information of ongoing campaigns they are part of, for viewing for the public.  In these forms, users can give the title of their campaign and an overview of what their campaign entails.  A comment section was then added to this so that users could ask question or just general remarks of what they thought of the campaign.  This connects users with other players in the community, giving them ideas or allow them to give information that might be needed, allowing for sharing of information from more experienced players to new players that might be unsure on rulings of the game.
+
+\subsection{Evaluate the current tools available for character creation and establish the relevant information that is needed.}
+During the research on the character creation tools currently available, it gives the user to select their, level, class, race, background, stats, armour class, speed, weapons, spells and much more.  After evaluating this we came to the conclusion that the scope of this was too large for the use of this application and only the core attributes that the DM is required to know would be import to our character creator.  The attributes we felt would be most need was the character's level, class, race, background and stats. \cite{d&dBeyond} \cite{handbook}
+
+\subsubsection{Character Creator}
+The Character Creators allows the users to fill out the relevant information of their character for us of DMs in campaigns.  The user must also have the ability to make multiple character as it is possible for their character to die in the campaign meaning they must start from being with a new one or the user might be taking part in multiple campaigns. \\\\
+The user is must also be giving to edit or delete there character at any stage, the reasoning behind this is as campaigns progress so does the player character meaning they will have changes to stats and level they will also receive experience points(xp) which will fluctuate constantly. \\\\
+In the case of character death the user must also have the ability to remove character as they will be unable to use them again in the campaign, without this option to delete the user is storing unused character and also posses as a reminder of when that character died which could take from the user experience of the application.
+
+\subsection{Limitation of the application.}
+\subsubsection{Character Creator}
+D\&D has a vast amount of choices to pick from when it comes to making a player character, with new options being constantly added to the game, this can be seen by there being several updates to the game from the date we started this project to the current date.  With this in mind keeping the character creator up to date would be a difficult task as the options the player can choose from would have to be expanded and changed repeatedly, for scope of this project this idea seemed unfeasible.  This being said even if the option where to stay constant the sheer amount of them poses a task in itself, with players being able to choose from a vast of amount of races, classes, sub-classes, backgrounds, skills, the list goes on.  Establishing this, we came to the conclusion that the base version of the options would be suited for the scope of this application.
+
+\subsubsection{Virtual Machine}
+When setting up the our virtual machine, we originally went with a Windows OS, the reasoning behind this was to simplify things by keeping the environment consistent throughout the creation of the project.  A problem arose when trying to set up Docker on this virtual machine, this caused quite an issue as we had bout been using Docker on our own personal machines which were also running a Windows OS.  After researching the issue we established that issue was the version of the Windows Server we were using did not allow for virtualization something that is needed when running Docker on Windows.  The for this is that Windows needs WSL (Windows Subsystem for Linux) to run Docker as the platform runs natively on Linux.  Once this was established we tried changing the version of Windows but found that the monthly cost to run it would be too expensive.  Our solution to this was to then run a Ubuntu Server taking advantage of Linux instead of using a Windows OS.
+
+\subsection{Authentication and Security}
+After Evaluating the Firebase Database we found that authentication section there was a multitude of Sign-in methods.  After researching these methods further we decided that using the Email/Password provider would be best suited for use in this application.  The reasoning behind this was that the application would be able to stand alone not requiring any particular type of web browser to use it or have to be registered with any particular provider \cite{auth}.  We added this functionality into the application by importing the AngularFireAuth from "@angular/fire/auth" then created a service called FireAuthenticationService to use and manipulate this.  \\\\
+The authentication was necessary in this project so that the user would be able to register an account and login.  This would needed so that the applications experience would be unique to the individual user and that the information that was personal to them could be stored.  When the user access the application they are given the option to sign in or sign up to the application, this option is present on the right side of the navigation bar which is at the top of the application.  Once the user have filled in the relevant information for either of these options user authentication is enabled and the button in the navigation bar changes to a log out option.
+
+\subsection{User Experience}
+The user experience was an important part of the development of the application.  It was vital that it was easy to navigate this was achieved through the implementation of a navigation bar present at the top of the application which allows the user to get to any of the desired pages.  The look of the application was also something we kept in mind, deciding on using bootstrap for the styling.  This allowed the application to be easily viewed and read by the user, the inputting of information was able to be straight-forward and seamless.  The colour scheme: 
+\begin{itemize}
+    \item Red was picked so that the user would be drawn to this part of the application, everything depicted in this colour is used for navigating of confirmation of inputted information.
+    \item White was used for any input information where the user is able to input text, whether it be for the registry, character-creator, messaging or post.  This was down so that the text could clearly seen by the user.
+    \item Grey was used and the background of the app to help highlight the rest of the view which is important to the user.
+\end{itemize}
+Text was made relatively large and in simple styling to insure that the user would not have any trouble while trying to read it.\\\\
+Accessing messages and forums was made simple for the user by adding them to the right side of the application this meant that the user to not have to navigate to different pages to check for the most recent massages and posts.  The user shown all conversation they are part of between the messaging and group messaging pages, and can check the character they have created in their personal page.  A comment section on the posts in the forums sections allows for user to interact with the community and to ask various question which other user may be able to answer, improving their experience.
+
+\subsection{Evaluation of the Technologies Used}
+It was our intent for this project to use technologies that we had very limited to no experience using.  Firebase, Docker, Azure and Ubuntu fit it this category, while we have had a bit of experience with Angular it was nothing to the extent of the application idea. All of these technologies where interconnected to produce the final application for the project.  When the user attempts to logs in, Firebase authenticates the user, through both Angular and Firebase the user state is set.  All information the user puts into the application is stored on the Firebase database which can then be retrieved and view by the user in the application.  Docker is used to build a containerized image of the application once it was ready for production and Azure, using Ubuntu as it's OS, was used to host the application on a cloud platform abstracting it from the local device.
+
+\subsubsection{Implementation of Angular}
+The Angular Framework was used to created the web pages for the application, this was then deployed locally before it was containerized. The local deployment of the application proved extremely useful as we could view edits and addition to the code in real time on the app. This meant that a fully functional implementation of the relevant could then be committing to GitHub which would then be pulled to our virtual machine. This was extremely useful throughout the development of the project as multiple changes to code and styling needed to be done before the current part of the component being worked on was ready to be integrated into the application.  Meaning that we would not have to unnecessarily run the server which was a plus on our side as this would increase the cost.  \\\\
+There was various types of UI component used on when implementing these pages with Angular and then styled with Bootstrap.  These pages were able to be seamlessly navigated with the use of the navigation bar present at the top of the application, we achieved this by using the methods built into the Angular Routing import.  \\\
+Through the imports that Angular has for Firebase it meant that we could use the methods present to work with the database for authentication and storage.  Managing the states of the application when the user was updating information constantly meant that Angular needed to be able to consistently read the changes to Firebase and re-render the page to keep the information up to date.
+
+\subsubsection{Implementation of Firebase}
+Firebase is an important feature of the application as it was used for authenticating the user and for storing all the user information.  There was a learning curve when it came to using Firebase to store the information, as it was a NoSQL database and we had previously only worked with SQL databases.  This meant we had to but quite some thought and time on exactly how we were going to store all the information in a way that was easy to understand and retrieve.\\\\
+As previously described in Section 6.2.5, Firebase was responsible for authenticating the user of the application.  It was able to successfully, sign the user in or register a new user and, if the user wished, log them out of the application.  This was possible using Firebase's predefined methods that we were able to access once the relevant import had been brought into Angular.
+
+\subsubsection{Implementation of Docker}
+Docker was an important part of this project as it gave the ability for the application be abstracted away for our local environment and reliably run on a cloud platform.  This was done by making a containerized image of the application at runtime. This abstraction meant that if the application was running in a work environment and needed to be expanded across multiple server with different environments there would be no issue and the application could run reliably.
+
+\subsubsection{Implementation of Azure}
+Azure was used for hosting the application on a cloud environment, extracted away for our local machinery.  We thought that this would be a valuable learning experience as the running of server side applications is commonplace in the workplace and continuing to be the norm for the foreseeable future. Setting up the virtual Azure posed some problems, though we had worked with virtual machine on cloud platforms before we had not worked with an application of the scope of the project.  We decided initially to use a Windows OS but after various problems we switched to a Ubuntu server instead, this is described in more detail in Section 6.2.4.
+
+\section{Plan vs Reality}
+\subsection{Location}
+The initial plan for the project was to allow the user, through the use of Google Maps to find users the application in their vicinity.  This unfortunately did not get implemented into the application however this might not have been necessary.  Making the user show there location for something that is usually played with peers did not seem to be that useful a feature.  It is true that people can play Table Top Role-playing games online or with people they might not know, however with the forums table, DMs(Dungeon Master) or admin for the case of the application, have the ability to share information about their ongoing campaigns and all user are able privately message each other.  This means if a user shows interest in the campaign they have the ability to communicate with each other and decide meeting new people to play the game with.
+
+\subsection{Rating System}
+Initially we had an idea for having a rating system on the forums page for campaigns that have been posted.  We decided against this as the campaign experience is personal to the player who took part in them and it is hard to get an overall impression of what the experience was like from a brief description given.  Users are still able to comment their opinions of the campaign where they might can also ask question if they are interested, if this is the case the admin can give the user an inclination of what the aspects of the their campaign are.
+
+\section{Opportunities for Improvement}
+\subsection{Categorise Posts}
+The ability to categorise the campaigns under genre and level is something they would have liked to implement into the application.  This would allow the user to find campaign that suit them more personally, where they can find low level campaigns if the are new to the game or for the more experienced player, high level campaigns where parties are might are implementing ideas that thy might not of experienced before.  The ability to find post by genre would allow users to view campaign relative to what they are interested in, this could allow the user to come up with ideas for their own campaigns or they might just have a general interest and want to learn more about it.
+
+\subsection{Filtering and Searching of Data}
+The implementation of filtering and searching different types of data for the user would make the experience of the application more enjoyable.  With regard to messaging, this would allow the user to search for their friends and start a conversation with ease and if they have already messaged before they could find the conversation without having to look through all their other messages.  Similarly implementing this type of system to the users profile page with regard to their character would allow the user to find their character instantly without having to look through all of there characters.  They could find characters by name or if they where starting a new campaign they could check all their character of the same level, this would be useful if they would like to use a character they have already made instead of making a new one.
+
+\section{Testing}
+For the majority of the project,  iterative manual testing was used. The reason for this was that writing test's for a database that was currently being build was a difficult task as the test would need to verify that the data had made it to firebase. Selenium was used to create simple test cases to test for multiple users.
