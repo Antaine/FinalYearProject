@@ -14,17 +14,17 @@
           <div class="card rounded-1">
             <div class="card-header">
               <!-- Post-->
-              <h3 class="mb-0">Message: </h3>
+              <h3 class="mb-0">Friend: </h3>
             </div>
             <div class="card-body">
               <div>
-                <label>User:</label>
+                <label>Input User Id:</label>
               </div>
               <!-- usern -->
-              <input type="text" class="userinput" name = "messageName"  [(ngModel)]="messageName" ngModel required/><br>
+              <input type="text" class="userinput" name = "friendId"  [(ngModel)]="friendId" ngModel required/><br>
               <p></p>
               <div>
-              <label>Content:</label>
+              <label>Say Hello to your Friend:</label>
               <!-- Input Content -->
             </div>
               <textarea id="content" class="contenttextarea" name = "postContent"  [(ngModel)]="messageContent" ngModel required></textarea><br>
@@ -45,8 +45,8 @@
   <div class="col-md-3">
     <div class="card" style="width: 18rem;" *ngFor="let item of messages">
       <div class="card-body" *ngIf="!item.isEdit; else elseBlock">
-        <h6 class="card-title">{{item.MessageName}} </h6>
-        <h3 class="card-title">{{item.MessageContent}}</h3><br>
+        <h3 class="card-link" (click)= "GetChat(item)">{{item.friendName}} </h3>
+        <h3 class="card-link" (click)= "GetChat(item)">{{item.MessageContent}}</h3><br>
 
         <h6 class="card-subtitle mb-2 text-muted">Sent: {{item.CreatedAt}} </h6>
 

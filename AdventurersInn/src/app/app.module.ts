@@ -22,6 +22,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { FireAuthenticationService } from "./services/fire-authentication.service";
 import { PostComponent } from './post/post.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PostComponent } from './post/post.component';
     ForgotPasswordComponent,
     VerifyEmailComponent,
     PostComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

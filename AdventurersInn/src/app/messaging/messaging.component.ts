@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { CrudService } from '../services/crudservice';
 import { FireAuthenticationService } from "../services/fire-authentication.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-messaging',
@@ -13,14 +14,15 @@ export class MessagingComponent implements OnInit {
   user: any; 
   messages: any;
   messageContent: string;
-  messageName: string;
+  friendId: string;
   friendName: string;
 
   //Import Crud Service
   constructor(
     
     public crudService: FireAuthenticationService,
-    public ngAuthService: FireAuthenticationService) { }
+    public ngAuthService: FireAuthenticationService,
+    private router: Router) { }
 
   ngOnInit(): void {
     //Initialize
@@ -30,27 +32,25 @@ export class MessagingComponent implements OnInit {
             return {
               id: e.payload.doc.id,
               isEdit: false,
-              MessageName: e.payload.doc.data()['friendName'],
+              friendName: e.payload.doc.data()['friendName'],
               MessageContent: e.payload.doc.data()['message'],
               CreatedAt: e.payload.doc.data()['createdAt'],
-              friendId: e.payload.doc.data()['friendId']
+              friendId: e.payload.doc.data()['friendId'],
+              chatId: e.payload.doc.data()['chatId']
             };
           })
         });
   }
 
   //Create Post Method
-  CreateMessage(postData:{postName: string; postContent: string}) {
+  CreateMessage(postData:{postName: string; postContent: string;}) {
     //console.log(postData);
     let record = {};
-    record['MessageName'] = this.messageName;
-    record['MessageContent'] = this.messageContent;
-
-  
-    console.log(this.friendName);
-    //record['friendName'] = this.friendName;
+    record['friendId'] = this.friendId;
+    record['messageContent'] = this.messageContent;
+    console.log(record);
     this.crudService.post_Message(record).then(resp => {
-      this.messageName = "";
+      this.friendId = "";
       this.messageContent = "";
       console.log(resp);
     })
@@ -69,16 +69,23 @@ export class MessagingComponent implements OnInit {
   EditMessage(record) {
     record.isEdit = true;
     record.EditPost = record.MessageContent;
-    record.EditName = record.MessageName;
+    record.EditName = record.friendId;
   }
 
   //Push Record
   UpdateMessage(recordRow) {
     let record = {};
-    record['MessageContent'] = recordRow.MessageContent;
-    record['MessageName'] = recordRow.MessageName;
+    record['messageContent'] = recordRow.MessageContent;
+    record['friendId'] = recordRow.friendId;
     this.crudService.edit_Message(recordRow.id, record);
     recordRow.isEdit = false;
+  }
+
+  GetChat(message){
+    console.log("Entered");
+    localStorage.setItem('chatState', JSON.stringify(message));
+    console.log(message);
+    this.router.navigate(['/chat'])
   }
 
 }

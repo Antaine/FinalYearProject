@@ -199,53 +199,61 @@ export class FireAuthenticationService {
 
   //Create Message
   post_Message(record) {
-    record['sender'] = this.userState.uid;
+
+    //Add User as sender
+    record['sender'] = this.userState.displayName;
+    //Get Current Time
     let dateTime = new Date()
     var time = dateTime.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'});
     record['createdAt'] = time;
-    var target = record['MessageName'];
-    console.log(chatId)
+
+    //Add target ID
+    var target = record['friendId'];
+
+    //Create Chat Room ID
     record['chatId'] = this.userState.uid + target;
     var chatId = this.userState.uid + target;
-
-    //console.log(this.friend.displayName.toString());
-    this.friendUpdateSender(record,target, chatId);
+    console.log(record);
+    //Update User Database
+    //this.friendUpdateSender(record,target, chatId);
     this.friendUpdateTarget(record, target, chatId);
-    record[this.userState.uid] = this.userState.displayName;
-   // record[target] = this.friend.displayName;
-   console.log(chatId);
+
+
+   // record[target] = this.userState.displayName;
+    //Add to Database
     return this.afs.collection('Messaging').doc(chatId).collection("Messages").add(record);
-    //return this.afs.collection('Messaging').doc(this.userState.uid+).collection("Friends").doc(target).set(data);
   }
 
+  //Updates User Friends, last message sent
   friendUpdateSender(record, target, chatId) {
+    console.log(record);
     const data = {
-      friendId: record['MessageName'],
-      message:  record['MessageContent'],
+      friendId: record['friendId'],
+      message:  record['messageContent'],
       createdAt: record['createdAt'],
       chatId: chatId,
     };
+
     
     return this.afs.collection('users').doc(this.userState.uid).collection("Friends").doc(target).set(data);
 
   }
+
+  //Updates Recipient Friends, last message sent
   friendUpdateTarget(record, target, chatId) {
     
     const data2 = {
       friendId: this.userState.uid,
-      message:  record['MessageContent'],
+      message:  record['messageContent'],
       createdAt: record['createdAt'],
       chatId: chatId,
       friendName: this.userState.displayName,
     };
-    console.log("2nd Update" + target);
-    
     return this.afs.collection('users').doc(target).collection("Friends").doc(this.userState.uid).set(data2);
   }
 
   //Read Posts
-  read_Messages() 
-  {return this.afs.collection('users').doc(this.userState.uid).collection("Friends").snapshotChanges();}
+  read_Messages() {return this.afs.collection('users').doc(this.userState.uid).collection("Friends").snapshotChanges();}
   
   //Delete Message
   delete_Message(record_id) {this.afs.doc('users/' + this.userState.uid+'/Messaging/'+record_id).delete();}
@@ -253,5 +261,16 @@ export class FireAuthenticationService {
   edit_Message(recordID,record){this.afs.collection('users').doc(this.userState.uid).collection("Messaging").doc(recordID).update(record);}
 
   getFriend(target) {return this.afs.collection('users').doc(target).snapshotChanges();}
+
+  readChat() {
+    var message = JSON.parse(localStorage.getItem('chatState'));
+    var chatId = message.chatId;
+    console.log(message);
+    console.log(chatId);
+    console.log(this.afs.collection('Messaging').doc(chatId).collection("Messages").snapshotChanges().toString());
+    return this.afs.collection('Messaging').doc(chatId).collection("Messages").snapshotChanges();}
+
   
+
+
 }

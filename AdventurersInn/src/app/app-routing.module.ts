@@ -12,6 +12,7 @@ import { SocialComponent } from './social/social.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthGuard } from "./auth.guard";
 import { PostComponent } from './post/post.component';
+import {ChatComponent}from './chat/chat.component';
 
 //Routes to Navigate to Pages
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'email-verification', component: VerifyEmailComponent },
   { path: 'username', component: HomepageComponent},
   { path: 'post', component: PostComponent},
+  { path: 'chat', component: ChatComponent},
 ];
 
 @NgModule({

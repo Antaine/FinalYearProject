@@ -1,0 +1,46 @@
+<div class="container row pt-5" style="color: black">
+    <div class="col-md-6 mx-auto">
+      <!-- Message Input-->
+      <h2 class="headingtitle">Messaging </h2>
+      <label style="color: #E10000"><h3><b>Welcome {{this.ngAuthService.userState.displayName}} to the Adventurers Inn</b></h3></label>
+    </div>
+  </div>
+  
+  <form #postMessage="ngForm" (ngSubmit)="ReplyMessage(messageContent)">
+    <div class="row pt-5" style="color: black">
+      <div class="col-md-9 mx-auto">
+        <div class="col-md-6 ml-5">
+          <div class="col-md-0 ml-2">
+            <div class="card rounded-1">
+              <div class="card-header">
+                <!-- Post-->
+                <h3 class="mb-0">Message: </h3>
+              </div>
+              <div class="card-body">
+                <div>
+                <label>Content:</label>
+                <!-- Input Content -->
+              </div>
+                <textarea id="content" class="contenttextarea" name = "messageContent"  [(ngModel)]="messageContent" ngModel required></textarea><br>
+                <p></p>
+                <button type="submit" class="postbutton btn btn-dark float-right"  style="background-color: #E10000">Send Message</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+      
+  <!-- Displays Message -->
+  <div class="row" style="margin-top: 25px;">
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem;" *ngFor="let item of messages">
+          <h3 class="card-title" (click)= "GetChat(item)">{{item.sender}} </h3>
+          <h3 class="card-title">{{item.messageContent}}</h3><br>
+          <h6 class="card-subtitle mb-2 text-muted">Sent: {{item.createdAt}} </h6>
+  
+          <!-- <a class="card-link" (click)="RemoveMessage(item.id)">Delete</a>-->
+      </div>
+    </div>
+  </div>

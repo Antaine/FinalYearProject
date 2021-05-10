@@ -95,7 +95,6 @@ export class ForumsComponent implements OnInit {
   }
 
   GetPost(post){
-    console.log("Entered");
     localStorage.setItem('postState', JSON.stringify(post));
     console.log(post);
     this.router.navigate(['/post'])
